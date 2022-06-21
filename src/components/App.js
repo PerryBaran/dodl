@@ -1,18 +1,44 @@
-import React from "react";
-import video from './video/Footage_Final.mp4';
-import background from './images/Final_Render.png';
+import React, { useState } from 'react';
+import Background from './Background';
+import Player from './Player'
 
-import videoStyle from './style/video.module.css';
+import slumber from './audio/Slumber.flac';
+import careless from './audio/Your Careless Embrace.flac';
+import restless from './audio/Restless Thoughts.flac';
+import detuned from './audio/Detuned Love.flac';
+import falling from './audio/Falling into the Void.flac'
 
-function App() {
+
+const App = () => {
+  const [songs, setSongs] = useState([
+    {
+      title: "Slumber",
+      src: slumber
+    },
+    {
+      title: "Your Careless Embrace",
+      src: careless
+    },
+    {
+      title: "Restless Thoughts",
+      src: restless
+    },
+    {
+      title: "Detuned Love",
+      src: detuned
+    },
+    {
+      title: "Falling into the Void",
+      src: falling
+    }
+  ])
+
+  const [songIndex, setSongIndex] = useState(0);
+
   return (
     <div className="App">
-      <div className={videoStyle.container}>
-        <video className={videoStyle.background} autoPlay loop muted>
-          <source src={video} type='video/mp4' />
-        </video>
-      </div>
-      
+      <Background />
+      <Player song={songs[songIndex]} />
     </div>
   );
 }

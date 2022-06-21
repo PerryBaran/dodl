@@ -5,3 +5,7 @@
     font-family:Arial, Helvetica, sans-serif;
     overflow: hidden;
 }
+
+button {
+    cursor: pointer;
+}
