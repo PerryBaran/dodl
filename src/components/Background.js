@@ -1,5 +1,5 @@
 import React from 'react';
-import video from './video/Footage_Final.mp4';
+import video from '../media/video/Footage_Final.mp4';
 import style from './style/video.module.css';
 
 const Background = (props) => {

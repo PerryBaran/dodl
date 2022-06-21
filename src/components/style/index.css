@@ -2,10 +2,75 @@
     box-sizing: border-box;
     margin: auto;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: 'Major Mono Display', monospace;
     overflow: hidden;
+}
+
+:root {
+    --lightPink: rgb(223, 136, 202);
+    --darkPink: rgba(128, 6, 100, 0.5);
+    --pinkShadow: 0 0 50px var(--darkPink), 0 0 15px var(--lightPink);
 }
 
 button {
     cursor: pointer;
+}
+
+h1 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0.8;
+    font-size: 4.5rem;
+    text-shadow: var(--pinkShadow);
+    overflow: visible;
+    transition-duration: 30s;
+    z-index: 20;
+    font-weight: 100;
+}
+
+h1:hover {
+    color: white;
+    opacity: 1;
+    transition-duration: 500ms;
+}
+
+h2 {
+    opacity: 0.8;
+    font-size: 4rem;
+    text-shadow: var(--pinkShadow);
+    overflow: visible;
+    transition-duration: 30s;
+    z-index: 20;
+    font-weight: 100;
+    margin-bottom: 5px;
+}
+
+h2:hover {
+    color: white;
+    opacity: 1;
+    transition-duration: 500ms;
+}
+
+a {
+    all:unset;
+    position: absolute;
+    bottom: 0;
+
+    
+    opacity: 0.4;
+    font-size: 1.4rem;
+    color: white;
+    text-shadow: var(--pinkShadow);
+    overflow: visible;
+    transition-duration: 500ms;
+    z-index: 20;
+
+    cursor: pointer;
+}
+
+a:hover {
+    opacity: 0.8;
+    font-size: 1.5rem;
 }

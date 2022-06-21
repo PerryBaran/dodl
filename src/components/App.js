@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Background from './Background';
 import Player from './Player'
+import style from './style/links.module.css';
 
-import slumber from './audio/Slumber.flac';
-import careless from './audio/Your Careless Embrace.flac';
-import restless from './audio/Restless Thoughts.flac';
-import detuned from './audio/Detuned Love.flac';
-import falling from './audio/Falling into the Void.flac'
+import slumber from '../media/audio/Slumber.flac';
+import careless from '../media/audio/Your Careless Embrace.flac';
+import restless from '../media/audio/Restless Thoughts.flac';
+import detuned from '../media/audio/Detuned Love.flac';
+import falling from '../media/audio/Falling into the Void.flac'
 
 
 const App = () => {
-  const [songs, setSongs] = useState([
+  //inconsistent capatilization because it looks good with the font
+  const [songs] = useState([
     {
-      title: "Slumber",
+      title: "slumber", 
       src: slumber
     },
     {
-      title: "Your Careless Embrace",
+      title: "Your careless embrace",
       src: careless
     },
     {
@@ -35,10 +37,39 @@ const App = () => {
 
   const [songIndex, setSongIndex] = useState(0);
 
+  const skipSong = (forwards = true) => {
+    if (forwards) {
+        setSongIndex(()=> {
+            let temp = songIndex;
+            temp++;
+
+            if (temp > songs.length - 1) {
+              temp = 0;
+            }
+
+            return temp;
+        });
+    } else {
+        setSongIndex(()=> {
+          let temp = songIndex;
+          temp--;
+
+          if (temp < 0) {
+            temp = songs.length - 1
+          }
+
+          return temp;
+      });
+    }
+}
+
   return (
     <div className="App">
+      <h1>Dreaming of Detuned Love</h1>
+      <a className={style.left} href='https://distrokid.com/hyperfollow/jenico/dreaming-of-detuned-love'>Music by Jenico</a>
+      <a className={style.right} href='https://www.artstation.com/tommartyn'>Art by Tom Martyn</a>
       <Background />
-      <Player song={songs[songIndex]} />
+      <Player song={songs[songIndex]} skipSong={skipSong}/>
     </div>
   );
 }

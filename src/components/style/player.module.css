@@ -1,24 +1,50 @@
-.center {
+.centerFlex {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.positionTop {
+    position: absolute;
+    top: 0;
+
+    height: 100%;
     width: 100%;
 }
 
+.positionBottom {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+}
+
+
 .bottom {
     position: absolute;
-    bottom: 20px;
+    top: 0;
 }
 
 .player {
-    
-}
-
-.name {
-    color:white;
-    opacity: 0.7;
-    font-size: 3rem;
+    width: 100%;
 }
 
 .controls {
+    width: 100%;
+    display: flex;
+}
+
+.controls > button {
+    background: none;
+    border: none;
+    opacity: 0.2;
+    font-size: 15rem;
+    transition-duration: 10s;
+    text-shadow: var(--pinkShadow);
+    
+}
+
+.controls > button:hover {
+    opacity: 0.8;
+    transition-duration: 500ms;
 }
