@@ -2,12 +2,13 @@ import React, {useState, useRef, useEffect} from 'react';
 import style from './style/player.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faForward, faBackward, faVolumeHigh, faVolumeLow, faVolumeOff, faBars} from '@fortawesome/free-solid-svg-icons';
+import { getLocalStorage, populateStorage } from './localStorage';
 
 const Player = (props) => {
     const {songs, songIndex, setSongIndex, skipSong, isPlaying, setIsPlaying } = props;
     const audioRef = useRef(null);
 
-    const [volume, setVolume] = useState(0.5);
+    const [volume, setVolume] = useState(Number(getLocalStorage('volume')));
 
     useEffect(() => { 
         audioRef.current.volume = volume;
@@ -83,9 +84,15 @@ const Volume = (props) => {
         });
     }, [volume]);
 
+    //remembers volume value upon reloads
+    const changeVolume = (e) => {
+        const currentVolume = e.target.value/100;
+        populateStorage('volume', currentVolume); 
+        setVolume(currentVolume);
+    }
 
     return (
-        <div className={style.volume} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
+        <div className={style.volume} style={{height: visible ? '270px' : 'auto'}} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
             <div className={`${style.centerFlex} ${style.volumeButton}`}>
                 <button>
                     <FontAwesomeIcon icon={icon} />
@@ -96,8 +103,8 @@ const Volume = (props) => {
                 name='volume' 
                 min={0} 
                 max={100} 
-                defaultValue={50} 
-                onChange={(e) => setVolume(e.target.value/100)}
+                defaultValue={volume * 100} 
+                onChange={(e) => changeVolume(e)}
                 style={{display: visible ? 'block' : 'none' }}
             />
         </div>
