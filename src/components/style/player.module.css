@@ -121,16 +121,24 @@
 .controls > button {
     background: none;
     border: none;
-    opacity: 0.2;
     font-size: 15rem;
-    width: 500px;
-    transition-duration: 10s;
-    text-shadow: var(--pinkShadow);
+    width: 33%;
+    height: 60vh;
     
+    filter: drop-shadow(0 0 10px var(--lightPink));
+}
+
+.showButton {
+    opacity: 0.4;
+    transition-duration: 2s;
+}
+
+.hideButton {
+    opacity: 0;
+    transition-duration: 10s;
 }
 
 .controls > button:hover {
     opacity: 0.8;
     transition-duration: 500ms;
 }
-

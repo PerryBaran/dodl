@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import style from './style/player.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faForward, faBackward, faVolumeHigh, faVolumeLow, faVolumeOff, faBars} from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPause, faForward, faBackward, faVolumeHigh, faVolumeLow, faVolumeOff, faBars, faStickyNote} from '@fortawesome/free-solid-svg-icons';
 import { getLocalStorage, populateStorage } from './localStorage';
 
 const Player = (props) => {
@@ -115,16 +115,23 @@ const Volume = (props) => {
 const Controls = (props) => {
     const {skipSong, isPlaying, setIsPlaying} = props
 
+    const hideWhilePlaying = () => {
+        if (isPlaying) {
+            return style.hideButton
+        }
+        return style.showButton
+    }
+
     return (
         <div className={`${style.centerFlex} ${style.positionTop}`}>
                 <div className={`${style.controls} ${style.middle}`}>
-                    <button className={style.backwards} onClick={() => skipSong(false)}>
+                    <button className={`${style.backwards}  ${hideWhilePlaying()}`} onClick={() => skipSong(false)}>
                         <FontAwesomeIcon icon={faBackward} />
                     </button>
-                    <button className={style.playPause} onClick={() => setIsPlaying(!isPlaying)}>
+                    <button className={`${style.playPause} ${hideWhilePlaying()}`} onClick={() => setIsPlaying(!isPlaying)} >
                         <FontAwesomeIcon icon={ isPlaying ? faPause : faPlay} />
                     </button>
-                    <button className={style.forward}>
+                    <button className={`${style.forward} ${hideWhilePlaying()}`}>
                         <FontAwesomeIcon icon={faForward} onClick={() => skipSong()}/>
                     </button>
                 </div>
