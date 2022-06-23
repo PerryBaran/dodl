@@ -40,29 +40,29 @@ const App = () => {
 
   const skipSong = (forwards = true) => {
     if (forwards) {
-        setSongIndex(()=> {
-            let temp = songIndex;
-            temp++;
-
-            if (temp > songs.length - 1) {
-              temp = 0;
-            }
-
-            return temp;
-        });
-    } else {
-        setSongIndex(()=> {
+      setSongIndex(()=> {
           let temp = songIndex;
-          temp--;
+          temp++;
 
-          if (temp < 0) {
-            temp = songs.length - 1
+          if (temp > songs.length - 1) {
+            temp = 0;
           }
 
           return temp;
       });
+    } else {
+      setSongIndex(()=> {
+        let temp = songIndex;
+        temp--;
+
+        if (temp < 0) {
+          temp = songs.length - 1
+        }
+
+        return temp;
+      });
     }
-}
+  }
 
   return (
     <div className="App">

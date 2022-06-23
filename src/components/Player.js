@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import style from './style/player.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faForward, faBackward, faVolumeHigh, faVolumeLow, faVolumeOff, faBars, faStickyNote} from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPause, faForward, faBackward, faVolumeHigh, faVolumeLow, faVolumeOff, faBars} from '@fortawesome/free-solid-svg-icons';
 import { getLocalStorage, populateStorage } from './localStorage';
 
 const Player = (props) => {
@@ -40,6 +40,7 @@ const Player = (props) => {
             <Tracklist songs={songs} setSongIndex={setSongIndex} />
             <Volume volume={volume} setVolume={setVolume}/>
             <Controls skipSong={skipSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
+            <Progressbar audioRef={audioRef}/>
         </div>
     );
 };
@@ -99,6 +100,7 @@ const Volume = (props) => {
                 </button>
             </div>
             <input 
+                className={style.volumeSlider}
                 type='range' 
                 name='volume' 
                 min={0} 
@@ -136,6 +138,68 @@ const Controls = (props) => {
                     </button>
                 </div>
             </div>
+    )
+}
+
+const Progressbar = (props) => {
+    const {audioRef} = props
+    const progRef = useRef(null);
+
+    const [time, setTime] = useState('0:00');
+    const [duration, setDuration] = useState('0:00')
+
+    //sets duration of track for progress bar and text element
+    useEffect(() => {
+        const seconds = Math.round(audioRef.current.duration)
+        if (!isNaN(seconds)) {
+            progRef.current.max = seconds
+            setDuration(calcTime(seconds))
+        }
+    }, [audioRef]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const seconds = Math.round(audioRef.current.currentTime)
+            if (!isNaN(seconds)) {
+                progRef.current.value = seconds
+                setTime(calcTime(seconds))
+            }    
+        }, 100);
+        return () => clearInterval(interval);
+    });
+
+    const calcTime = (input) => {
+        let sec = input;
+        let min = 0;
+        while (sec > 60) {
+            min++;
+            sec = sec - 60;
+        }
+        if (sec < 10) {
+            sec = `0${sec}`;
+        }
+        return `${min}:${sec}`;
+    }
+
+    const changeHandler = (value) => {
+        audioRef.current.currentTime = value;
+
+    }
+
+    return (
+        <div className={`${style.progress} ${style.centerFlex} ${style.positionBottom}`}>
+            <p className={style.time}>{time}</p>
+            <input 
+                className={style.progressBar}
+                ref={progRef}
+                type='range' 
+                name='time'
+                min={0}
+                defaultValue={0}
+                onChange={(e)=> changeHandler(e.target.value)}
+            />
+            <p className={style.duration}>{duration}</p>
+        </div>
     )
 }
 
