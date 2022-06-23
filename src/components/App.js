@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import Background from './Background';
 import Player from './Player'
 import style from './style/links.module.css';
@@ -11,7 +11,7 @@ import falling from '../media/audio/Falling into the Void.flac'
 
 
 const App = () => {
-  //inconsistent capatilization because it looks good with the font
+  //inconsistent capatilization in song titles because it looks good with the font
   const [songs] = useState([
     {
       title: "slumber", 

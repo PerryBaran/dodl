@@ -1,16 +1,17 @@
 import React, {useState, useRef, useEffect} from 'react';
 import style from './style/player.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPause, faForward, faBackward, faVolumeHigh} from '@fortawesome/free-solid-svg-icons';
 
 const Player = (props) => {
-    const { song, skipSong } = props
+    const {song, skipSong } = props
     const audioRef = useRef(null);
 
     const [isPlaying, setIsPlaying] = useState(false);
+    const [volume, setVolume] = useState(0.5);
 
     useEffect(() => { 
-        audioRef.current.volume = 0.2;
+        audioRef.current.volume = volume;
         if (isPlaying) {
             audioRef.current.play();
         } else {
@@ -18,6 +19,7 @@ const Player = (props) => {
         }
     });
 
+    //has song finished playing? play next song
     useEffect(() => {
         const interval = setInterval(() => {
             const duration = audioRef.current.duration;
@@ -27,7 +29,7 @@ const Player = (props) => {
             }
         }, 1000);
         return () => clearInterval(interval);
-      });
+    });
 
     return (
         <div className={style.player}>
@@ -35,7 +37,19 @@ const Player = (props) => {
             <div className={`${style.centerFlex} ${style.positionBottom}`}>
                 <h2 className={style.name}>{song.title}</h2>
             </div>
-            <div className={`${style.centerFlex} ${style.positionTop}`}>
+            <Volume setVolume={setVolume}/>
+            <Controls skipSong={skipSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
+        </div>
+    );
+};
+
+
+//play/pause, skip forward/backwards controls
+const Controls = (props) => {
+    const {skipSong, isPlaying, setIsPlaying} = props
+
+    return (
+        <div className={`${style.centerFlex} ${style.positionTop}`}>
                 <div className={`${style.controls} ${style.middle}`}>
                     <button className={style.backwards} onClick={() => skipSong(false)}>
                         <FontAwesomeIcon icon={faBackward} />
@@ -48,8 +62,30 @@ const Player = (props) => {
                     </button>
                 </div>
             </div>
+    )
+}
+
+const Volume = (props) => {
+    const {setVolume} = props;
+
+    const [volumeVisible, setVolumeVisible] = useState(false);
+
+    return (
+        <div className={style.volume} onMouseEnter={() => setVolumeVisible(true)} onMouseLeave={() => setVolumeVisible(false)}>
+            <button>
+                <FontAwesomeIcon icon={faVolumeHigh} />
+            </button>
+            <input 
+                type='range' 
+                name='volume' 
+                min={0} 
+                max={100} 
+                defaultValue={50} 
+                onChange={(e) => setVolume(e.target.value/100)}
+                style={{display: volumeVisible ? 'block' : 'none' }}
+            />
         </div>
-    );
+    )
 }
 
 export default Player;
