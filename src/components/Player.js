@@ -5,7 +5,7 @@ import { faPlay, faPause, faForward, faBackward, faVolumeHigh, faVolumeLow, faVo
 import { getLocalStorage, populateStorage } from './localStorage';
 
 const Player = (props) => {
-    const {songs, songIndex, setSongIndex, skipSong, isPlaying, setIsPlaying } = props;
+    const {songs, songIndex, setSongIndex, isPlaying, setIsPlaying } = props;
     const audioRef = useRef(null);
 
     const [volume, setVolume] = useState(Number(getLocalStorage('volume')));
@@ -30,6 +30,32 @@ const Player = (props) => {
         }, 1000);
         return () => clearInterval(interval);
     });
+    
+    const skipSong = (forwards = true) => {
+        if (forwards) {
+          setSongIndex(()=> {
+              let temp = songIndex;
+              temp++;
+    
+              if (temp > songs.length - 1) {
+                temp = 0;
+              }
+    
+              return temp;
+          });
+        } else {
+          setSongIndex(()=> {
+            let temp = songIndex;
+            temp--;
+    
+            if (temp < 0) {
+              temp = songs.length - 1
+            }
+    
+            return temp;
+          });
+        }
+      }
 
     return (
         <div className={style.player}>
@@ -39,7 +65,7 @@ const Player = (props) => {
             </div>
             <Tracklist songs={songs} setSongIndex={setSongIndex} />
             <Volume volume={volume} setVolume={setVolume}/>
-            <Controls skipSong={skipSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
+            <Controls isPlaying={isPlaying} setIsPlaying={setIsPlaying} skipSong={skipSong} />
             <Progressbar audioRef={audioRef}/>
         </div>
     );
@@ -115,7 +141,7 @@ const Volume = (props) => {
 
 //play/pause, skip forward/backwards controls
 const Controls = (props) => {
-    const {skipSong, isPlaying, setIsPlaying} = props
+    const {isPlaying, setIsPlaying, skipSong} = props
 
     const hideWhilePlaying = () => {
         if (isPlaying) {
@@ -130,7 +156,7 @@ const Controls = (props) => {
                     <button className={`${style.backwards}  ${hideWhilePlaying()}`} onClick={() => skipSong(false)}>
                         <FontAwesomeIcon icon={faBackward} />
                     </button>
-                    <button className={`${style.playPause} ${hideWhilePlaying()}`} onClick={() => setIsPlaying(!isPlaying)} >
+                    <button className={`${style.playPause} ${hideWhilePlaying()}`} onClick={() => setIsPlaying(!isPlaying)}>
                         <FontAwesomeIcon icon={ isPlaying ? faPause : faPlay} />
                     </button>
                     <button className={`${style.forward} ${hideWhilePlaying()}`}>
@@ -155,7 +181,7 @@ const Progressbar = (props) => {
             progRef.current.max = seconds
             setDuration(calcTime(seconds))
         }
-    }, [audioRef]);
+    }, [audioRef?.current?.duration]);
 
     useEffect(() => {
         const interval = setInterval(() => {

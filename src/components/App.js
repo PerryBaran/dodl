@@ -38,32 +38,6 @@ const App = () => {
   const [songIndex, setSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const skipSong = (forwards = true) => {
-    if (forwards) {
-      setSongIndex(()=> {
-          let temp = songIndex;
-          temp++;
-
-          if (temp > songs.length - 1) {
-            temp = 0;
-          }
-
-          return temp;
-      });
-    } else {
-      setSongIndex(()=> {
-        let temp = songIndex;
-        temp--;
-
-        if (temp < 0) {
-          temp = songs.length - 1
-        }
-
-        return temp;
-      });
-    }
-  }
-
   return (
     <div className="App">
       <h1>Dreaming of Detuned Love</h1>
@@ -74,7 +48,6 @@ const App = () => {
         songs={songs} 
         songIndex={songIndex} 
         setSongIndex={setSongIndex} 
-        skipSong={skipSong} 
         isPlaying={isPlaying} 
         setIsPlaying={setIsPlaying}/>
     </div>
