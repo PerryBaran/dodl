@@ -1,13 +1,12 @@
 import React, {useState, useRef, useEffect} from 'react';
 import style from './style/player.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faForward, faBackward, faVolumeHigh} from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPause, faForward, faBackward, faVolumeHigh, faVolumeLow, faVolumeOff, faBars} from '@fortawesome/free-solid-svg-icons';
 
 const Player = (props) => {
-    const {song, skipSong } = props
+    const {songs, songIndex, setSongIndex, skipSong, isPlaying, setIsPlaying } = props;
     const audioRef = useRef(null);
 
-    const [isPlaying, setIsPlaying] = useState(false);
     const [volume, setVolume] = useState(0.5);
 
     useEffect(() => { 
@@ -33,16 +32,77 @@ const Player = (props) => {
 
     return (
         <div className={style.player}>
-            <audio ref={audioRef} src={song.src} ></audio>
+            <audio ref={audioRef} src={songs[songIndex].src} ></audio>
             <div className={`${style.centerFlex} ${style.positionBottom}`}>
-                <h2 className={style.name}>{song.title}</h2>
+                <h2 className={style.name}>{songs[songIndex].title}</h2>
             </div>
-            <Volume setVolume={setVolume}/>
+            <Tracklist songs={songs} setSongIndex={setSongIndex} />
+            <Volume volume={volume} setVolume={setVolume}/>
             <Controls skipSong={skipSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
         </div>
     );
 };
 
+const Tracklist = (props) => {
+    const {songs, setSongIndex} = props;
+
+    const [visible, setVisible] = useState(false);
+
+    return (
+        <div className={style.tracklist} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
+            <button>
+                <FontAwesomeIcon icon={faBars} />
+            </button>
+            <ul style={{display: visible ? 'block' : 'none' }}>
+                {songs.map((song => {
+                    const index = songs.indexOf(song)
+                    return (
+                        <li key={song.title} onClick={() => setSongIndex(index)}>{song.title}</li>
+                    )
+                }))}
+            </ul>
+        </div>
+    )
+}
+
+const Volume = (props) => {
+    const {volume, setVolume} = props;
+
+    const [visible, setVisible] = useState(false);
+    const [icon, setIcon] = useState(faVolumeHigh);
+
+    useEffect(() => {
+        setIcon(()=> {    
+            if (volume < 0.5) {
+                return faVolumeLow
+            }
+            if (volume === 0) {
+                return faVolumeOff
+            }
+            return faVolumeHigh
+        });
+    }, [volume]);
+
+
+    return (
+        <div className={style.volume} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
+            <div className={`${style.centerFlex} ${style.volumeButton}`}>
+                <button>
+                    <FontAwesomeIcon icon={icon} />
+                </button>
+            </div>
+            <input 
+                type='range' 
+                name='volume' 
+                min={0} 
+                max={100} 
+                defaultValue={50} 
+                onChange={(e) => setVolume(e.target.value/100)}
+                style={{display: visible ? 'block' : 'none' }}
+            />
+        </div>
+    )
+}
 
 //play/pause, skip forward/backwards controls
 const Controls = (props) => {
@@ -62,29 +122,6 @@ const Controls = (props) => {
                     </button>
                 </div>
             </div>
-    )
-}
-
-const Volume = (props) => {
-    const {setVolume} = props;
-
-    const [volumeVisible, setVolumeVisible] = useState(false);
-
-    return (
-        <div className={style.volume} onMouseEnter={() => setVolumeVisible(true)} onMouseLeave={() => setVolumeVisible(false)}>
-            <button>
-                <FontAwesomeIcon icon={faVolumeHigh} />
-            </button>
-            <input 
-                type='range' 
-                name='volume' 
-                min={0} 
-                max={100} 
-                defaultValue={50} 
-                onChange={(e) => setVolume(e.target.value/100)}
-                style={{display: volumeVisible ? 'block' : 'none' }}
-            />
-        </div>
     )
 }
 

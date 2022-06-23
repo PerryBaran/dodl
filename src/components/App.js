@@ -36,6 +36,7 @@ const App = () => {
   ])
 
   const [songIndex, setSongIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const skipSong = (forwards = true) => {
     if (forwards) {
@@ -68,8 +69,14 @@ const App = () => {
       <h1>Dreaming of Detuned Love</h1>
       <a className={style.left} href='https://distrokid.com/hyperfollow/jenico/dreaming-of-detuned-love'>Music by Jenico</a>
       <a className={style.right} href='https://www.artstation.com/tommartyn'>Art by Tom Martyn</a>
-      <Background />
-      <Player song={songs[songIndex]} skipSong={skipSong}/>
+      <Background isPlaying={isPlaying}/>
+      <Player 
+        songs={songs} 
+        songIndex={songIndex} 
+        setSongIndex={setSongIndex} 
+        skipSong={skipSong} 
+        isPlaying={isPlaying} 
+        setIsPlaying={setIsPlaying}/>
     </div>
   );
 }

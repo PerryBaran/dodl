@@ -19,7 +19,9 @@ button {
 h1 {
     position: absolute;
     top: 0;
-    width: 100%;
+    width: calc(100%-600px);
+    margin-left: 300px;
+    margin-right: 300px;
     text-align: center;
     opacity: 0.8;
     font-size: 4.5rem;
