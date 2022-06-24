@@ -30,6 +30,26 @@ const Player = (props) => {
         }, 1000);
         return () => clearInterval(interval);
     });
+
+    //keyboard functionality
+    useEffect(() => {
+        window.addEventListener('keydown', keyDown)
+        return () => window.removeEventListener('keydown', keyDown)
+    })
+
+    const keyDown = (e) => {
+        console.log(e)
+        if (e.code === 'Space') {
+            e.preventDefault();
+            setIsPlaying(!isPlaying)
+        } if (e.code === 'ArrowRight') {
+            e.preventDefault();
+            skipSong();
+        } if (e.code === 'ArrowLeft') {
+            e.preventDefault();
+            skipSong(false);
+        }
+    }
     
     const skipSong = (forwards = true) => {
         if (forwards) {
@@ -61,7 +81,7 @@ const Player = (props) => {
         <div className={style.player}>
             <audio ref={audioRef} src={songs[songIndex].src} ></audio>
             <div className={`${style.centerFlex} ${style.positionBottom}`}>
-                <h2 className={style.name}>{songs[songIndex].title}</h2>
+                <h2 className={`${style.name} ${isPlaying ?  '' : 'playing'}`}>{songs[songIndex].title}</h2>
             </div>
             <Tracklist songs={songs} setSongIndex={setSongIndex} />
             <Volume volume={volume} setVolume={setVolume}/>

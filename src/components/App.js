@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import Background from './Background';
 import Player from './Player'
-import style from './style/links.module.css';
+import style from './style/app.module.css';
 
 import slumber from '../media/audio/Slumber.flac';
 import careless from '../media/audio/Your Careless Embrace.flac';
@@ -40,7 +40,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Dreaming of Detuned Love</h1>
+      <h1 className={isPlaying ?  '' : 'playing'}>Dreaming of Detuned Love</h1>
       <a className={style.left} href='https://distrokid.com/hyperfollow/jenico/dreaming-of-detuned-love'>Music by Jenico</a>
       <a className={style.right} href='https://www.artstation.com/tommartyn'>Art by Tom Martyn</a>
       <Background isPlaying={isPlaying}/>
