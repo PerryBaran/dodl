@@ -44,6 +44,11 @@
     filter: drop-shadow(0 0 10px var(--lightPink));
     font-size: 2rem;
     cursor: pointer;
+    transition-duration: 300ms;
+}
+
+.tracklist:hover > button {
+    color: white;
 }
 
 .tracklist > ul {
@@ -82,6 +87,11 @@
     color: black;
     filter: drop-shadow(0 0 10px var(--lightPink));
     font-size: 2rem;
+    transition-duration: 300ms;
+}
+
+.volume:hover .volumeButton > button {
+    color: white;
 }
 
 .volumeSlider {
@@ -110,7 +120,14 @@
     border-radius: 20px;
     background: var(--lightPink);
     box-shadow: var(--pinkShadow);
-    cursor: pointer;
+}
+
+.volumeSlder::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+    background: var(--lightPink);
+    box-shadow: var(--pinkShadow);
 }
 
 .controls {
@@ -181,7 +198,14 @@
     border-radius: 20px;
     background: var(--lightPink);
     box-shadow: var(--pinkShadow);
-    cursor: pointer;
+}
+
+.progressBar::-moz-range-thumb {
+    width: 25px;
+    height: 15px;
+    border-radius: 20px;
+    background: var(--lightPink);
+    box-shadow: var(--pinkShadow);
 }
 
 .time {
@@ -196,4 +220,14 @@
 
 .name {
     margin-bottom: 50px;
+}
+
+@media screen and (max-width: 685px) {
+    .tracklist {
+        display: none;
+    }
+
+    .controls > button { 
+        font-size: 5rem;
+    }
 }

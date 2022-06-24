@@ -19,9 +19,7 @@ button {
 h1 {
     position: absolute;
     top: 0;
-    width: calc(100%-600px);
-    margin-left: 300px;
-    margin-right: 300px;
+    width: 100%;
     text-align: center;
     opacity: 0.8;
     font-size: 4.5rem;
@@ -75,4 +73,20 @@ a {
 a:hover {
     opacity: 0.8;
     font-size: 1.5rem;
+}
+
+@media screen and (max-width: 685px) {
+    h1 {
+        font-size: 2rem;
+        text-align: left;
+        padding-right: 55px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    a {
+        font-size: 0.8rem;
+    }
 }
