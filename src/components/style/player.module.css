@@ -230,4 +230,8 @@
     .controls > button { 
         font-size: 5rem;
     }
+
+    .name {
+        font-size: 1.4rem;
+    }
 }

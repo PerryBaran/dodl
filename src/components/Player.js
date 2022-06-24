@@ -202,6 +202,8 @@ const Progressbar = (props) => {
             setDuration(calcTime(seconds))
         }
     }, [audioRef?.current?.duration]);
+    //I don't understand this warning, if anyone smarter then me can tell me what the problem is and how to fix it let me know, though it seems to work better with the warning then without anything/just audioRef
+
 
     useEffect(() => {
         const interval = setInterval(() => {
