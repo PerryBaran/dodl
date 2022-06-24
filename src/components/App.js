@@ -40,9 +40,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className={isPlaying ?  '' : 'playing'}>Dreaming of Detuned Love</h1>
-      <a className={style.left} href='https://distrokid.com/hyperfollow/jenico/dreaming-of-detuned-love'>Music by Jenico</a>
-      <a className={style.right} href='https://www.artstation.com/tommartyn'>Art by Tom Martyn</a>
+      <h1 className={isPlaying ?  '' : 'pause'}>Dreaming of Detuned Love</h1>
+      <a className={`${style.left} ${isPlaying ?  '' : 'pauseA'}`} href='https://distrokid.com/hyperfollow/jenico/dreaming-of-detuned-love'>Music by Jenico</a>
+      <a className={`${style.right} ${isPlaying ?  '' : 'pauseA'}`} href='https://www.artstation.com/tommartyn'>Art by Tom Martyn</a>
       <Background isPlaying={isPlaying}/>
       <Player 
         songs={songs} 

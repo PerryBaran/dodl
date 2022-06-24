@@ -9,6 +9,7 @@ const Player = (props) => {
     const audioRef = useRef(null);
 
     const [volume, setVolume] = useState(Number(getLocalStorage('volume')));
+    const [songChange, setSongChange] = useState(false);
 
     useEffect(() => { 
         audioRef.current.volume = volume;
@@ -18,6 +19,14 @@ const Player = (props) => {
             audioRef.current.pause();
         }
     });
+
+    useEffect(() => {
+        setSongChange(true);
+        const timer = setTimeout(() => {
+            setSongChange(false);
+        }, 1000);
+        return () => clearTimeout(timer)
+    }, [songIndex]);
 
     //has song finished playing? play next song
     useEffect(() => {
@@ -81,7 +90,7 @@ const Player = (props) => {
         <div className={style.player}>
             <audio ref={audioRef} src={songs[songIndex].src} ></audio>
             <div className={`${style.centerFlex} ${style.positionBottom}`}>
-                <h2 className={`${style.name} ${isPlaying ?  '' : 'playing'}`}>{songs[songIndex].title}</h2>
+                <h2 className={`${style.name} ${isPlaying ?  '' : 'pause'} ${songChange ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
             </div>
             <Tracklist songs={songs} setSongIndex={setSongIndex} />
             <Volume volume={volume} setVolume={setVolume}/>
