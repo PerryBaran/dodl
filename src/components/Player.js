@@ -9,9 +9,11 @@ import Progressbar from './Progressbar';
 const Player = (props) => {
     const {songs, songIndex, setSongIndex, isPlaying, setIsPlaying } = props;
     const audioRef = useRef(null);
+    const progressBarRef = useRef(null);
 
     const [volume, setVolume] = useState(getLocalVolume());
     const [updateClassNameOnSongChange, setUpdateClassNameOnSongChange] = useState(false);
+    const [duration, setDuration] = useState('0:00');
 
     useEffect(() => {
         if (isPlaying) {
@@ -23,7 +25,7 @@ const Player = (props) => {
 
     useEffect(() => {
         audioRef.current.volume = volume;
-    }, [volume])
+    }, [volume]);
 
     useEffect(() => {
         setUpdateClassNameOnSongChange(true);
@@ -47,7 +49,7 @@ const Player = (props) => {
     useEffect(() => {
         window.addEventListener('keydown', keyDownHandler)
         return () => window.removeEventListener('keydown', keyDownHandler)
-    })
+    });
 
     const keyDownHandler = (e) => {
         const key = e.code
@@ -78,7 +80,7 @@ const Player = (props) => {
                 setVolume(0);
             }
         }
-    }
+    };
     
     const skipSong = (forwards = true) => {
         if (forwards) {
@@ -98,18 +100,39 @@ const Player = (props) => {
             return newSongIndex;
           });
         }
-    }
+    };
+
+    const updateProgressBar = () => {
+        const seconds = Math.round(audioRef.current.duration)
+        if (!isNaN(seconds)) {
+            progressBarRef.current.max = seconds
+            setDuration(calcDisplayTime(seconds))
+        }
+    };
+
+    const calcDisplayTime = (seconds) => {
+        let sec = seconds;
+        let min = 0;
+        while (sec >= 60) {
+            min++;
+            sec = sec - 60;
+        }
+        if (sec < 10) {
+            sec = `0${sec}`;
+        }
+        return `${min}:${sec}`;
+    };
 
     return (
         <div className={style.player}>
-            <audio ref={audioRef} src={songs[songIndex].src}></audio>
+            <audio ref={audioRef} src={songs[songIndex].src} onLoadedMetadata={updateProgressBar}></audio>
             <div className={`centerFlex positionBottom`}>
                 <h2 className={`${style.name} ${isPlaying ?  '' : 'pauseHeading'} ${updateClassNameOnSongChange ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
             </div>
             <Tracklist songs={songs} setSongIndex={setSongIndex} />
             <Volume volume={volume} setVolume={setVolume}/>
             <Controls isPlaying={isPlaying} setIsPlaying={setIsPlaying} skipSong={skipSong} />
-            <Progressbar audioRef={audioRef}/>
+            <Progressbar audioRef={audioRef} progressBarRef={progressBarRef} duration={duration} calcDisplayTime={calcDisplayTime}/>
         </div>
     );
 };

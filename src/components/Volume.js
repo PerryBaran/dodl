@@ -28,7 +28,7 @@ const Volume = (props) => {
         const currentVolume = e.target.value/100;
         populateStorage('volume', currentVolume); 
         setVolume(currentVolume);
-    }
+    };
 
     return (
         <div className={style.volume} style={{height: visible ? '270px' : 'auto'}} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
@@ -49,7 +49,7 @@ const Volume = (props) => {
                 style={{display: visible ? 'block' : 'none' }}
             />
         </div>
-    )
-}
+    );
+};
 
 export default Volume

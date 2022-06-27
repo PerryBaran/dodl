@@ -1,44 +1,21 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import style from './style/progressbar.module.css';
 
 const Progressbar = (props) => {
-    const {audioRef} = props
-    const barRef = useRef(null);
+    const {audioRef, progressBarRef, duration, calcDisplayTime} = props
 
     const [time, setTime] = useState('0:00');
-    const [duration, setDuration] = useState('0:00')
-
-    useEffect(() => {
-        const seconds = Math.round(audioRef.current.duration)
-        if (!isNaN(seconds)) {
-            barRef.current.max = seconds
-            setDuration(calcTime(seconds))
-        }
-    });
 
     useEffect(() => {
         const updateTimer = setInterval(() => {
             const seconds = Math.round(audioRef.current.currentTime)
             if (!isNaN(seconds)) {
-                barRef.current.value = seconds
-                setTime(calcTime(seconds))
+                progressBarRef.current.value = seconds
+                setTime(calcDisplayTime(seconds))
             }    
         }, 100);
         return () => clearInterval(updateTimer);
     });
-
-    const calcTime = (input) => {
-        let sec = input;
-        let min = 0;
-        while (sec >= 60) {
-            min++;
-            sec = sec - 60;
-        }
-        if (sec < 10) {
-            sec = `0${sec}`;
-        }
-        return `${min}:${sec}`;
-    };
 
     const changeHandler = (value) => {
         audioRef.current.currentTime = value;
@@ -49,7 +26,7 @@ const Progressbar = (props) => {
             <p className={style.time}>{time}</p>
             <input 
                 className={style.progressBar}
-                ref={barRef}
+                ref={progressBarRef}
                 type='range' 
                 name='time'
                 min={0}
@@ -58,7 +35,7 @@ const Progressbar = (props) => {
             />
             <p className={style.duration}>{duration}</p>
         </div>
-    )
-}
+    );
+};
 
 export default Progressbar

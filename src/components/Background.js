@@ -21,6 +21,6 @@ const Background = (props) => {
             </video>
       </div>
     );
-}
+};
 
 export default Background;

@@ -32,7 +32,7 @@ const App = () => {
       title: "Falling into the Void",
       src: falling
     }
-  ])
+  ]);
 
   const [songIndex, setSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -51,6 +51,6 @@ const App = () => {
         setIsPlaying={setIsPlaying}/>
     </div>
   );
-}
+};
 
 export default App;

@@ -22,7 +22,7 @@ const Tracklist = (props) => {
                 }))}
             </ul>
         </div>
-    )
-}
+    );
+};
 
 export default Tracklist

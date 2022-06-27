@@ -11,10 +11,10 @@ const Controls = (props) => {
             return style.hideButton
         }
         return style.showButton
-    }
+    };
 
     return (
-        <div className={`centerFlex positionCenter`}>
+        <div className={`centerFlex positionTop`}>
                 <div className={`${style.controls} ${style.middle}`}>
                     <button className={`${style.backwards} ${hideWhilePlaying()}`} onClick={() => skipSong(false)}>
                         <FontAwesomeIcon icon={faBackward} />
@@ -27,7 +27,7 @@ const Controls = (props) => {
                     </button>
                 </div>
             </div>
-    )
-}
+    );
+};
 
 export default Controls
