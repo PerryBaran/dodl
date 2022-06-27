@@ -2,7 +2,6 @@ import React, { useState} from 'react';
 import Background from './Background';
 import Player from './Player'
 import style from './style/app.module.css';
-
 import slumber from '../media/audio/Slumber.flac';
 import careless from '../media/audio/Your Careless Embrace.flac';
 import restless from '../media/audio/Restless Thoughts.flac';
@@ -40,9 +39,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className={isPlaying ?  '' : 'pause'}>Dreaming of Detuned Love</h1>
-      <a className={`${style.left} ${isPlaying ?  '' : 'pauseA'}`} href='https://distrokid.com/hyperfollow/jenico/dreaming-of-detuned-love'>Music by Jenico</a>
-      <a className={`${style.right} ${isPlaying ?  '' : 'pauseA'}`} href='https://www.artstation.com/tommartyn'>Art by Tom Martyn</a>
+      <h1 className={isPlaying ?  '' : 'pauseHeading'}>Dreaming of Detuned Love</h1>
+      <a className={`${style.attribution} ${style.left} ${isPlaying ?  '' : style.pause}`} href='https://distrokid.com/hyperfollow/jenico/dreaming-of-detuned-love'>Music by Jenico</a>
+      <a className={`${style.attribution} ${style.right} ${isPlaying ?  '' : style.pause}`} href='https://www.artstation.com/tommartyn'>Art by Tom Martyn</a>
       <Background isPlaying={isPlaying}/>
       <Player 
         songs={songs} 

@@ -1,0 +1,47 @@
+.tracklist {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    width: 300px;
+
+    overflow: visible;
+    z-index: 30;
+}
+
+.tracklist > button {
+    all: unset;
+
+    color: black;
+    filter: drop-shadow(0 0 10px var(--lightPink));
+
+    font-size: 2rem;
+   
+    transition-duration: 300ms; 
+    
+    cursor: pointer;
+}
+
+.tracklist:hover > button {
+    color: white;
+}
+
+.tracklist > ul {
+    all: unset;
+    color: white;
+}
+
+.tracklist > ul > li {
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.tracklist > ul > li:hover {
+    text-shadow: 0 0 5px var(--darkPink), 0 0 2px var(--lightPink);
+}
+
+@media screen and (max-width: 780px) {
+    .tracklist {
+        display: none;
+    }
+}

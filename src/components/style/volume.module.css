@@ -1,0 +1,77 @@
+.volume {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    overflow: visible;
+    z-index: 30;
+    cursor: pointer;
+}
+
+.volumeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+
+    overflow: visible;
+}
+
+.volumeButton > button {
+    all: unset;
+
+    color: black;
+    filter: drop-shadow(0 0 10px var(--lightPink));
+
+    font-size: 2rem;
+
+    transition-duration: 300ms;
+}
+
+.volume:hover .volumeButton > button {
+    color: white;
+}
+
+.volumeSlider {
+    -webkit-appearance: none;
+
+    position: absolute;
+    top: 30px;
+    right: -80px;
+
+    width: 200px;
+    height: 20px;
+    margin-top: 100px;
+    margin-left: 40px;
+
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: var(--pinkShadow);
+
+    transform: rotate(270deg);
+    
+    overflow: visible;
+    z-index: 40;
+    cursor: pointer;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+
+    background: var(--lightPink);
+    box-shadow: var(--pinkShadow);
+}
+
+.volumeSlder::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+
+    background: var(--lightPink);
+    box-shadow: var(--pinkShadow);
+}

@@ -1,3 +1,28 @@
+.attribution {
+    all:unset;
+
+    position: absolute;
+    bottom: 0;
+
+    color: white;
+    opacity: 0;
+
+    font-size: 1.4rem;
+    text-shadow: var(--pinkShadow);
+
+    transition-duration: 4s;
+    
+    overflow: visible;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.attribution:hover {
+    opacity: 0.8;
+    font-size: 1.5rem;
+    transition-duration: 500ms;
+}
+
 .left {
    left: 5px;
 
@@ -7,3 +32,12 @@
     right: 5px;
 }
 
+.pause {
+    opacity: 0.4;
+}
+
+@media screen and (max-width: 780px) {
+    .attribution {
+        font-size: 0.8rem;
+    }
+}

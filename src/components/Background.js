@@ -1,6 +1,6 @@
 import React, {useRef, useEffect} from 'react';
-import video from '../media/video/Footage_Final.mp4';
 import style from './style/video.module.css';
+import video from '../media/video/Footage_Final.mp4';
 
 const Background = (props) => {
     const {isPlaying} = props;

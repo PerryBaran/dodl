@@ -1,0 +1,36 @@
+.controls {
+    display: flex;
+    width: 100%;
+}
+
+.controls > button {
+    width: 33%;
+    height: 60vh;
+
+    background: none;
+    border: none;
+    filter: drop-shadow(0 0 10px var(--lightPink));
+
+    font-size: 15rem;
+}
+
+.showButton {
+    opacity: 0.4;
+    transition-duration: 2s;
+}
+
+.hideButton {
+    opacity: 0;
+    transition-duration: 15s;
+}
+
+.controls > button:hover {
+    opacity: 0.8;
+    transition-duration: 500ms;
+}
+
+@media screen and (max-width: 780px), screen and (max-height: 550px) {
+    .controls > button { 
+        font-size: 5rem;
+    }
+}
