@@ -1,4 +1,4 @@
-.tracklist {
+.tracklistContainer {
     position: absolute;
     top: 5px;
     left: 5px;
@@ -9,7 +9,7 @@
     z-index: 30;
 }
 
-.tracklist > button {
+.tracklistButton {
     all: unset;
 
     color: black;
@@ -22,22 +22,26 @@
     cursor: pointer;
 }
 
-.tracklist:hover > button {
+.tracklistContainer:hover > button {
     color: white;
 }
 
-.tracklist > ul {
+.tracklistContainer > ul {
     all: unset;
     color: white;
 }
 
-.tracklist > ul > li {
+.tracklistContainer > ul > li {
     font-size: 1.1rem;
     cursor: pointer;
 }
 
-.tracklist > ul > li:hover {
+.tracklistContainer > ul > li:hover {
     text-shadow: 0 0 5px var(--darkPink), 0 0 2px var(--lightPink);
+}
+
+.pause {
+    color: white;
 }
 
 @media screen and (max-width: 780px) {

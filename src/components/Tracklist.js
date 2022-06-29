@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import style from './style/tracklist.module.css'
 
 const Tracklist = (props) => {
-    const {songs, setSongIndex} = props;
+    const {songs, setSongIndex, isPlaying} = props;
 
     const [visible, setVisible] = useState(false);
 
     return (
-        <div className={style.tracklist} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
-            <button>
+        <div className={style.tracklistContainer} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
+            <button className={`${style.tracklistButton} ${isPlaying ?  '' : style.pause}`}>
                 <FontAwesomeIcon icon={faBars} />
             </button>
             <ul style={{display: visible ? 'block' : 'none' }}>

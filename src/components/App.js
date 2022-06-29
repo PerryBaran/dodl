@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import Background from './Background';
 import Player from './Player'
 import style from './style/app.module.css';
@@ -36,6 +36,8 @@ const App = () => {
 
   const [songIndex, setSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  
 
   return (
     <div className="App">
