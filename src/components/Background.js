@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, { useRef, useEffect } from 'react';
 import style from './style/video.module.css';
 import video from '../media/video/Footage_Final.mp4';
 
@@ -22,5 +22,6 @@ const Background = (props) => {
       </div>
     );
 };
+
 
 export default Background;

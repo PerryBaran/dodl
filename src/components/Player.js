@@ -1,6 +1,6 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import style from './style/player.module.css';
-import {getLocalVolume} from '../services/localStorage';
+import { getLocalVolume } from '../services/localStorage';
 import Tracklist from './Tracklist';
 import Volume from './Volume';
 import Controls from './Controls';
@@ -129,8 +129,8 @@ const Player = (props) => {
             <div className={`centerFlex positionBottom`}>
                 <h2 className={`${style.name} ${isPlaying ?  '' : 'pauseHeading'} ${updateClassNameOnSongChange ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
             </div>
-            <Tracklist songs={songs} setSongIndex={setSongIndex} />
-            <Volume volume={volume} setVolume={setVolume}/>
+            <Tracklist songs={songs} setSongIndex={setSongIndex} isPlaying={isPlaying}/>
+            <Volume volume={volume} setVolume={setVolume} isPlaying={isPlaying} />
             <Controls isPlaying={isPlaying} setIsPlaying={setIsPlaying} skipSong={skipSong} />
             <Progressbar audioRef={audioRef} progressBarRef={progressBarRef} duration={duration} calcDisplayTime={calcDisplayTime}/>
         </div>

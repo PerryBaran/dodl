@@ -1,11 +1,11 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import style from './style/volume.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeHigh, faVolumeLow, faVolumeOff } from '@fortawesome/free-solid-svg-icons';
 import { populateStorage } from '../services/localStorage';
 
 const Volume = (props) => {
-    const {volume, setVolume} = props;
+    const {volume, setVolume ,isPlaying} = props;
 
     const [visible, setVisible] = useState(false);
     const [icon, setIcon] = useState(faVolumeHigh);
@@ -32,8 +32,8 @@ const Volume = (props) => {
 
     return (
         <div className={style.volume} style={{height: visible ? '270px' : 'auto'}} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
-            <div className={`centerFlex ${style.volumeButton}`}>
-                <button>
+            <div className={`centerFlex ${style.volumeButtonContainer}`}>
+                <button className={`${style.volumeButton} ${isPlaying ?  '' : style.pause}`}>
                     <FontAwesomeIcon icon={icon} />
                 </button>
             </div>

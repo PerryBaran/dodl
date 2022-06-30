@@ -8,7 +8,7 @@
     cursor: pointer;
 }
 
-.volumeButton {
+.volumeButtonContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +18,7 @@
     overflow: visible;
 }
 
-.volumeButton > button {
+.volumeButton {
     all: unset;
 
     color: black;
@@ -29,7 +29,7 @@
     transition-duration: 300ms;
 }
 
-.volume:hover .volumeButton > button {
+.volume:hover .volumeButton {
     color: white;
 }
 
@@ -74,4 +74,8 @@
 
     background: var(--lightPink);
     box-shadow: var(--pinkShadow);
+}
+
+.pause {
+    color: white;
 }
