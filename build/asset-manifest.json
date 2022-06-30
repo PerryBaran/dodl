@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dodl/static/css/main.7d75b51d.css",
-    "main.js": "/dodl/static/js/main.cd828d4f.js",
+    "main.css": "/dodl/static/css/main.f6a6ca33.css",
+    "main.js": "/dodl/static/js/main.13ff8280.js",
     "static/media/Footage_Final.mp4": "/dodl/static/media/Footage_Final.54acb098a343556826f9.mp4",
     "static/media/Your Careless Embrace.flac": "/dodl/static/media/Your Careless Embrace.524debf5356847e29dba.flac",
     "static/media/Restless Thoughts.flac": "/dodl/static/media/Restless Thoughts.3595cb6e07994a309cd5.flac",
@@ -9,11 +9,11 @@
     "static/media/Falling into the Void.flac": "/dodl/static/media/Falling into the Void.f994d409c725529946db.flac",
     "static/media/Slumber.flac": "/dodl/static/media/Slumber.911f5d1cc8ae5ed92fde.flac",
     "index.html": "/dodl/index.html",
-    "main.7d75b51d.css.map": "/dodl/static/css/main.7d75b51d.css.map",
-    "main.cd828d4f.js.map": "/dodl/static/js/main.cd828d4f.js.map"
+    "main.f6a6ca33.css.map": "/dodl/static/css/main.f6a6ca33.css.map",
+    "main.13ff8280.js.map": "/dodl/static/js/main.13ff8280.js.map"
   },
   "entrypoints": [
-    "static/css/main.7d75b51d.css",
-    "static/js/main.cd828d4f.js"
+    "static/css/main.f6a6ca33.css",
+    "static/js/main.13ff8280.js"
   ]
 }
