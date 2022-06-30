@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Background from './Background';
 import Player from './Player'
 import style from './style/app.module.css';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getDownloadURL } from "firebase/storage";
 import { slumberRef, carelessRef, restlessRef, detunedRef, fallingRef } from '../services/firebase';
-import { stringToByteArray } from '@firebase/util';
 
 const App = () => {
   //inconsistent capatilization in song titles because it looks good with the font
