@@ -2,64 +2,54 @@ import React, { useState, useEffect } from 'react';
 import Background from './Background';
 import Player from './Player'
 import style from './style/app.module.css';
-import { getDownloadURL } from "firebase/storage";
-import { slumberRef, carelessRef, restlessRef, detunedRef, fallingRef } from '../services/firebase';
+import { getDownloadURL, ref } from "firebase/storage";
+import { storage } from '../services/firebase';
 
 const App = () => {
   //inconsistent capatilization in song titles because it looks good with the font
   const [songs, setSongs] = useState([
     {
       title: "slumber", 
-      src: undefined
+      src: undefined,
+      reference: 'Slumber.flac'
     },
     {
       title: "Your careless embrace",
-      src: undefined
+      src: undefined,
+      reference: 'Your Careless Embrace.flac'
     },
     {
       title: "Restless Thoughts",
-      src: undefined
+      src: undefined,
+      reference: 'Restless Thoughts.flac'
     },
     {
       title: "Detuned Love",
-      src: undefined
+      src: undefined,
+      reference: 'Detuned Love.flac'
     },
     {
       title: "Falling into the Void",
-      src: undefined
+      src: undefined,
+      reference: 'Falling into the Void.flac'
     }
   ]);
   const [songIndex, setSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-      getDownloadURL(slumberRef)
+    const songsCopy = [...songs];
+    const length = songsCopy.length;
+    for (let i = 0; i < length; i++) {
+      const song = songsCopy[i]
+      const songRef = ref(storage, `audio/${song.reference}`);
+      getDownloadURL(songRef)
       .then((url) => {
-        updateSongSrc(0, url)
+        song.src = url
       })
-      getDownloadURL(carelessRef)
-      .then((url) => {
-        updateSongSrc(1, url)
-      })
-      getDownloadURL(restlessRef)
-      .then((url) => {
-        updateSongSrc(2, url)
-      })
-      getDownloadURL(detunedRef)
-      .then((url) => {
-        updateSongSrc(3, url)
-      })
-      getDownloadURL(fallingRef)
-      .then((url) => {
-        updateSongSrc(4, url)
-      })
+    }
+    setSongs(songsCopy)
   }, []);
-
-  const updateSongSrc = (i, url) => {
-    const newSongs = songs;
-    newSongs[i].src = url;
-    setSongs(newSongs);
-  }
 
   return (
     <div className="App">

@@ -13,11 +13,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage();
 
-const slumberRef = ref(storage, 'audio/Slumber.flac');
-const carelessRef = ref(storage, 'audio/Your Careless Embrace.flac');
-const restlessRef = ref(storage, 'audio/Restless Thoughts.flac');
-const detunedRef = ref(storage, 'audio/Detuned Love.flac');
-const fallingRef = ref(storage, 'audio/Falling into the Void.flac');
-
-export { slumberRef, carelessRef, restlessRef, detunedRef, fallingRef }
+export { storage }
 
