@@ -26,11 +26,12 @@
 
     font-size: 2rem;
 
-    transition-duration: 300ms;
+    transition-duration: 5s;
 }
 
 .volume:hover .volumeButton {
     color: white;
+    transition-duration: 300ms;
 }
 
 .volumeSlider {

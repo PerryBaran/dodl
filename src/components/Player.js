@@ -132,7 +132,7 @@ const Player = (props) => {
             <Tracklist songs={songs} setSongIndex={setSongIndex} isPlaying={isPlaying}/>
             <Volume volume={volume} setVolume={setVolume} isPlaying={isPlaying} />
             <Controls isPlaying={isPlaying} setIsPlaying={setIsPlaying} skipSong={skipSong} />
-            <Progressbar audioRef={audioRef} progressBarRef={progressBarRef} duration={duration} calcDisplayTime={calcDisplayTime}/>
+            <Progressbar audioRef={audioRef} progressBarRef={progressBarRef} duration={duration} calcDisplayTime={calcDisplayTime} isPlaying={isPlaying}/>
         </div>
     );
 };

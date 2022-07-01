@@ -1,15 +1,23 @@
 .progress {
     height: 20px;
     margin-bottom: 20px;
+
+    
+
     overflow: visible;
 }
 
-.progress > p {
+.displayTime {
     color: white;
+    text-shadow: var(--pinkShadow);
 
     width: 20%;
     height: 100%;
     padding-top: 2px;
+
+    opacity: 0.8;
+
+    transition-duration: 5s;
 
     font-size: 0.9rem;
 }
@@ -21,11 +29,21 @@
     width: 60%;
     border-radius: 20px;
     
+    opacity: 0.5;
+    
     background-color: rgba(0, 0, 0, 0);
     box-shadow: var(--pinkShadow);
+    
+    transition-duration: 10s;
 
     overflow: visible;
     cursor: pointer;
+}
+
+.pause {
+    opacity: 1;
+
+    transition-duration: 2s;
 }
 
 .progressBar::-webkit-slider-thumb {

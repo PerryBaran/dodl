@@ -3,7 +3,7 @@
     top: 5px;
     left: 5px;
 
-    width: 300px;
+    width: 400px;
 
     overflow: visible;
     z-index: 30;
@@ -17,23 +17,29 @@
 
     font-size: 2rem;
    
-    transition-duration: 300ms; 
+    transition-duration: 5s; 
     
     cursor: pointer;
 }
 
 .tracklistContainer:hover > button {
     color: white;
+    transition-duration: 300ms;
 }
 
 .tracklistContainer > ul {
     all: unset;
+
+    position: relative;
+    right: 2px;
+    
     color: white;
 }
 
 .tracklistContainer > ul > li {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    margin-top: 2px;
 }
 
 .tracklistContainer > ul > li:hover {
@@ -44,8 +50,8 @@
     color: white;
 }
 
-@media screen and (max-width: 780px) {
-    .tracklist {
+@media screen and (max-width: 1262px) {
+    .tracklistContainer {
         display: none;
     }
 }

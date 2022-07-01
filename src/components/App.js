@@ -11,27 +11,27 @@ const App = () => {
     {
       title: "slumber", 
       src: undefined,
-      reference: 'Slumber.flac'
+      ref: 'Slumber.flac'
     },
     {
       title: "Your careless embrace",
       src: undefined,
-      reference: 'Your Careless Embrace.flac'
+      ref: 'Your Careless Embrace.flac'
     },
     {
       title: "Restless Thoughts",
       src: undefined,
-      reference: 'Restless Thoughts.flac'
+      ref: 'Restless Thoughts.flac'
     },
     {
       title: "Detuned Love",
       src: undefined,
-      reference: 'Detuned Love.flac'
+      ref: 'Detuned Love.flac'
     },
     {
       title: "Falling into the Void",
       src: undefined,
-      reference: 'Falling into the Void.flac'
+      ref: 'Falling into the Void.flac'
     }
   ]);
   const [songIndex, setSongIndex] = useState(0);
@@ -42,13 +42,14 @@ const App = () => {
     const length = songsCopy.length;
     for (let i = 0; i < length; i++) {
       const song = songsCopy[i]
-      const songRef = ref(storage, `audio/${song.reference}`);
+      const songRef = ref(storage, `audio/${song.ref}`);
       getDownloadURL(songRef)
       .then((url) => {
         song.src = url
       })
     }
     setSongs(songsCopy)
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
