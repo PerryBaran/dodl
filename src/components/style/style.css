@@ -17,9 +17,8 @@ button {
 }
 
 h1 {
-    position: absolute;
-    top: 0;
     text-align: center;
+    vertical-align: middle;
 
     width: 100%;
     padding-left: 125px;
@@ -35,6 +34,16 @@ h1 {
 
     overflow: visible;
     z-index: 20;
+}
+
+.h1Container {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    height: 40px;
+
+    overflow: visible;
 }
 
 h1:hover {
@@ -92,24 +101,13 @@ h2:hover {
     width: 100%;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1262px), screen and (max-height: 550px) {
     h1 {
-        padding-left: 0;
-        padding-right: 55px;
-        font-size: 2rem;
-        text-align: left;
+        font-size: 1.5rem;
+        padding-left: 40px;
+        padding-right: 40px;
     }
-
-    h2 {
-        font-size: 2rem;
-    }
-}
-
-@media screen and (max-height: 550px) {
-    h1 {
-         font-size: 2rem;
-    }
-
+    
     h2 {
         font-size: 2rem;
     }

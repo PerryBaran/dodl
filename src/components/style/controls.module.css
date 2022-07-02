@@ -29,7 +29,7 @@
     transition-duration: 500ms;
 }
 
-@media screen and (max-width: 780px), screen and (max-height: 550px) {
+@media screen and (max-width: 1262px), screen and (max-height: 550px) {
     .controls > button { 
         font-size: 5rem;
     }

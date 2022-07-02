@@ -39,7 +39,7 @@
 .tracklistContainer > ul > li {
     font-size: 1.5rem;
     cursor: pointer;
-    margin-top: 2px;
+    margin-top: 4px;
 }
 
 .tracklistContainer > ul > li:hover {
@@ -51,7 +51,11 @@
 }
 
 @media screen and (max-width: 1262px) {
+    .tracklistContainer > ul > li {
+        font-size: 1rem;
+    }
+
     .tracklistContainer {
-        display: none;
+        width: 300px;
     }
 }
