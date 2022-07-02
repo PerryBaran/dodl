@@ -11,6 +11,7 @@
 
 .background {
     object-fit: cover;
+    background-image: linear-gradient(rgb(59, 2, 46), rgb(28, 9, 34));
 
     width: 100vw;
     height: 100vh;
