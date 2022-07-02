@@ -1,10 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import style from './style/video.module.css';
-import video from '../media/video/Footage_Final.mp4';
+import { getDownloadURL, ref } from "firebase/storage";
+import { storage } from '../services/firebase';
 
 const Background = (props) => {
     const {isPlaying} = props;
-    const videoRef = useRef(null);
+    const videoRef = useRef(undefined);
+    const [src, setSrc] = useState(undefined)
 
     useEffect(() => { 
         if (isPlaying) {
@@ -14,11 +16,20 @@ const Background = (props) => {
         }
     });
 
+    useEffect(() => {
+        if (!src) {
+            const backgroundRef = ref(storage, 'video/Background.mp4');
+            getDownloadURL(backgroundRef)
+            .then((url) => {
+                setSrc(url)
+            })
+        }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return (
         <div className={style.container}>
-            <video className={style.background} autoPlay loop muted ref={videoRef}>
-                <source src={video} type='video/mp4' />
-            </video>
+            <video className={style.background} autoPlay loop muted ref={videoRef} src={src} />
       </div>
     );
 };
