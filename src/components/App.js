@@ -7,31 +7,32 @@ import { storage } from '../services/firebase';
 
 const App = () => {
   //inconsistent capatilization in song titles because it looks good with the font
+  //to add src directly, pass a falsey value to ref
   const [songs, setSongs] = useState([
     {
       title: "slumber", 
       src: undefined,
-      ref: 'Slumber.flac'
+      ref: 'audio/Slumber.flac'
     },
     {
       title: "Your careless embrace",
       src: undefined,
-      ref: 'Your Careless Embrace.flac'
+      ref: 'audio/Your Careless Embrace.flac'
     },
     {
       title: "Restless Thoughts",
       src: undefined,
-      ref: 'Restless Thoughts.flac'
+      ref: 'audio/Restless Thoughts.flac'
     },
     {
       title: "Detuned Love",
       src: undefined,
-      ref: 'Detuned Love.flac'
+      ref: 'audio/Detuned Love.flac'
     },
     {
       title: "Falling into the Void",
       src: undefined,
-      ref: 'Falling into the Void.flac'
+      ref: 'audio/Falling into the Void.flac'
     }
   ]);
   const [songIndex, setSongIndex] = useState(0);
@@ -42,11 +43,13 @@ const App = () => {
     const length = songsCopy.length;
     for (let i = 0; i < length; i++) {
       const song = songsCopy[i]
-      const songRef = ref(storage, `audio/${song.ref}`);
-      getDownloadURL(songRef)
-      .then((url) => {
-        song.src = url
-      })
+      if (song.ref) {
+        const songRef = ref(storage, song.ref);
+        getDownloadURL(songRef)
+        .then((url) => {
+          song.src = url
+        })
+      }
     }
     setSongs(songsCopy)
     //eslint-disable-next-line react-hooks/exhaustive-deps
