@@ -68,7 +68,8 @@ const App = () => {
         songIndex={songIndex} 
         setSongIndex={setSongIndex} 
         isPlaying={isPlaying} 
-        setIsPlaying={setIsPlaying}/>
+        setIsPlaying={setIsPlaying}
+      />
     </div>
   );
 };

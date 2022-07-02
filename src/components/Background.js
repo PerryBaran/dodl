@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import style from './style/video.module.css';
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from '../services/firebase';
+import style from './style/video.module.css';
+
 
 const Background = (props) => {
     const {isPlaying} = props;
@@ -29,7 +30,14 @@ const Background = (props) => {
 
     return (
         <div className={style.container}>
-            <video className={style.background} autoPlay loop muted ref={videoRef} src={src} />
+            <video 
+                className={style.background} 
+                autoPlay 
+                loop 
+                muted 
+                ref={videoRef} 
+                src={src}
+            />
       </div>
     );
 };
