@@ -10,7 +10,7 @@ const App = () => {
   return (
       <div className="App">
         <div className='centerFlex h1Container'>
-          <h1 className={!isPlaying && 'pauseHeading'}>Dreaming of Detuned Love</h1>
+          <h1 className={`${!isPlaying && 'pauseHeading'}`}>Dreaming of Detuned Love</h1>
         </div>
         <AppContext.Provider value={{isPlaying, setIsPlaying}}>
           <Background/>

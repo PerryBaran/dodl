@@ -12,12 +12,14 @@ import AppContext from './AppContext';
 
 const Player = (props) => {
     const { isPlaying } = useContext(AppContext);
-    const audioRef = useRef(undefined);
-    const progressRef = useRef(undefined);
+    
     const [songs] = useSongs(songList);
     const [songIndex, setSongIndex] = useState(0);
     const [volume, setVolume] = useState(getLocalVolume());
     const [songChangeClassName, setSongChangeClassName] = useState(false);
+    
+    const audioRef = useRef(undefined);
+    const progressRef = useRef(undefined);
 
     useEffect(() => {
         if (isPlaying) {
