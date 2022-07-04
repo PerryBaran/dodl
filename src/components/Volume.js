@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import style from './style/volume.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVolumeHigh, faVolumeLow, faVolumeOff } from '@fortawesome/free-solid-svg-icons';
+import { faVolumeHigh, faVolumeLow } from '@fortawesome/free-solid-svg-icons';
 import { populateStorage } from '../services/localStorage';
 
 const Volume = (props) => {
@@ -15,9 +15,6 @@ const Volume = (props) => {
         setIcon(()=> {    
             if (volume < 0.5) {
                 return faVolumeLow
-            }
-            if (volume === 0) {
-                return faVolumeOff
             }
             return faVolumeHigh
         });
