@@ -75,7 +75,7 @@ const Player = (props) => {
         <div className={style.player}>
             <audio ref={audioRef} src={songs[songIndex].src} onLoadedMetadata={() => {progressRef.current.updateProgressBarDuration()}}></audio>
             <div className={`centerFlex positionBottom`}>
-                <h2 className={`${style.name} ${isPlaying ?  '' : 'pauseHeading'} ${songChangeClassName ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
+                <h2 className={`${style.name} ${!isPlaying && 'pauseHeading'} ${songChangeClassName ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
             </div>
             <Tracklist songs={songs} setSongIndex={setSongIndex}/>
             <Volume volume={volume} setVolume={setVolume} />

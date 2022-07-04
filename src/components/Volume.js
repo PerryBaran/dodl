@@ -32,7 +32,7 @@ const Volume = (props) => {
     return (
         <div className={style.volume} style={{height: visible ? '270px' : 'auto'}} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
             <div className={`centerFlex ${style.volumeButtonContainer}`}>
-                <button className={`${style.volumeButton} ${isPlaying ?  '' : style.pause}`}>
+                <button className={`${style.volumeButton} ${!isPlaying && style.pause}`}>
                     <FontAwesomeIcon icon={icon} />
                 </button>
             </div>

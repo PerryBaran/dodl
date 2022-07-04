@@ -50,9 +50,9 @@ const Progressbar = forwardRef((props, ref) => {
 
     return (
         <div className={`${style.progress} centerFlex positionBottom `}>
-            <p className={`${style.displayTime} ${style.time} ${isPlaying ? '' : style.pause}`}>{time}</p>
+            <p className={`${style.displayTime} ${style.time} ${!isPlaying && style.pause}`}>{time}</p>
             <input 
-                className={`${style.progressBar} ${isPlaying ? '' : style.pause}`}
+                className={`${style.progressBar} ${!isPlaying && style.pause}`}
                 ref={progressBarRef}
                 type='range' 
                 name='time'
@@ -60,7 +60,7 @@ const Progressbar = forwardRef((props, ref) => {
                 defaultValue={0}
                 onChange={(e)=> changeHandler(e.target.value)}
             />
-            <p className={`${style.displayTime} ${style.duration} ${isPlaying ? '' : style.pause}`}>{duration}</p>
+            <p className={`${style.displayTime} ${style.duration} ${!isPlaying && style.pause}`}>{duration}</p>
         </div>
     );
 });
