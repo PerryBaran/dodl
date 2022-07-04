@@ -1,10 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import style from './style/progressbar.module.css';
 
-const Progressbar = (props) => {
-    const {audioRef, progressBarRef, duration, calcDisplayTime, isPlaying} = props
+const Progressbar = forwardRef((props, ref) => {
+    const {audioRef, isPlaying} = props
 
+    const progressBarRef = useRef(undefined);
+    const [duration, setDuration] = useState('0:00');
     const [time, setTime] = useState('0:00');
+
+    useImperativeHandle(ref, () => ({
+        updateProgressBarDuration() {
+            const seconds = Math.round(audioRef.current.duration)
+            if (!isNaN(seconds)) {
+                progressBarRef.current.max = seconds
+                setDuration(calcDisplayTime(seconds))
+            }
+        }
+    }));
 
     useEffect(() => {
         const updateTimer = setInterval(() => {
@@ -16,6 +28,19 @@ const Progressbar = (props) => {
         }, 100);
         return () => clearInterval(updateTimer);
     });
+    
+    const calcDisplayTime = (seconds) => {
+        let sec = seconds;
+        let min = 0;
+        while (sec >= 60) {
+            min++;
+            sec = sec - 60;
+        }
+        if (sec < 10) {
+            sec = `0${sec}`;
+        }
+        return `${min}:${sec}`;
+    };
 
     const changeHandler = (value) => {
         audioRef.current.currentTime = value;
@@ -36,6 +61,6 @@ const Progressbar = (props) => {
             <p className={`${style.displayTime} ${style.duration} ${isPlaying ? '' : style.pause}`}>{duration}</p>
         </div>
     );
-};
+});
 
 export default Progressbar

@@ -10,14 +10,12 @@ import useSongs from './CustomHooks/useSongs';
 
 const Player = (props) => {
     const { isPlaying, setIsPlaying } = props;
-    const audioRef = useRef(null);
-    const progressBarRef = useRef(null);
-
+    const audioRef = useRef(undefined);
+    const progressRef = useRef(undefined);
     const [songs] = useSongs(songList);
     const [songIndex, setSongIndex] = useState(0);
     const [volume, setVolume] = useState(getLocalVolume());
-    const [songChange, setSongChange] = useState(false);
-    const [duration, setDuration] = useState('0:00');
+    const [songChangeClassName, setSongChangeClassName] = useState(false);
 
     useEffect(() => {
         if (isPlaying) {
@@ -31,11 +29,11 @@ const Player = (props) => {
         audioRef.current.volume = volume;
     }, [volume]);
 
-    //checks if a song has just changed > used to add className to the song's name to show it on song change
+    //makes song name visible on song change
     useEffect(() => {
-        setSongChange(true);
+        setSongChangeClassName(true);
         const timer = setTimeout(() => {
-            setSongChange(false);
+            setSongChangeClassName(false);
         }, 1000);
         return () => clearTimeout(timer)
     }, [songIndex]);
@@ -106,33 +104,11 @@ const Player = (props) => {
         }
     };
 
-    //tried to update duration inside Progressbar.js on a useEffect, but found updating here onLoadedMetaData to be more consistent
-    const updateProgressBarDuration = () => {
-        const seconds = Math.round(audioRef.current.duration)
-        if (!isNaN(seconds)) {
-            progressBarRef.current.max = seconds
-            setDuration(calcDisplayTime(seconds))
-        }
-    };
-
-    const calcDisplayTime = (seconds) => {
-        let sec = seconds;
-        let min = 0;
-        while (sec >= 60) {
-            min++;
-            sec = sec - 60;
-        }
-        if (sec < 10) {
-            sec = `0${sec}`;
-        }
-        return `${min}:${sec}`;
-    };
-
     return (
         <div className={style.player}>
-            <audio ref={audioRef} src={songs[songIndex].src} onLoadedMetadata={updateProgressBarDuration}></audio>
+            <audio ref={audioRef} src={songs[songIndex].src} onLoadedMetadata={() => {progressRef.current.updateProgressBarDuration()}}></audio>
             <div className={`centerFlex positionBottom`}>
-                <h2 className={`${style.name} ${isPlaying ?  '' : 'pauseHeading'} ${songChange ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
+                <h2 className={`${style.name} ${isPlaying ?  '' : 'pauseHeading'} ${songChangeClassName ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
             </div>
             <Tracklist 
                 songs={songs} 
@@ -150,10 +126,8 @@ const Player = (props) => {
                 setIsPlaying={setIsPlaying} 
             />
             <Progressbar 
+                ref={progressRef}
                 audioRef={audioRef}
-                progressBarRef={progressBarRef}
-                duration={duration}
-                calcDisplayTime={calcDisplayTime}
                 isPlaying={isPlaying}
             />
         </div>
