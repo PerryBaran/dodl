@@ -1,19 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import useSongs from './CustomHooks/useSongs';
 import style from './style/player.module.css';
+import songList from '../songList'
 import { getLocalVolume } from '../services/localStorage';
 import Tracklist from './Tracklist';
 import Volume from './Volume';
 import Controls from './Controls';
 import Progressbar from './Progressbar';
+import KeyboardListener from './KeyboardListener';
+import AppContext from './AppContext';
 
 const Player = (props) => {
-    const {songs, songIndex, setSongIndex, isPlaying, setIsPlaying } = props;
-    const audioRef = useRef(null);
-    const progressBarRef = useRef(null);
-
+    const { isPlaying } = useContext(AppContext);
+    const audioRef = useRef(undefined);
+    const progressRef = useRef(undefined);
+    const [songs] = useSongs(songList);
+    const [songIndex, setSongIndex] = useState(0);
     const [volume, setVolume] = useState(getLocalVolume());
-    const [songChange, setSongChange] = useState(false);
-    const [duration, setDuration] = useState('0:00');
+    const [songChangeClassName, setSongChangeClassName] = useState(false);
 
     useEffect(() => {
         if (isPlaying) {
@@ -27,11 +31,11 @@ const Player = (props) => {
         audioRef.current.volume = volume;
     }, [volume]);
 
-    //checks if a song has just changed > used to add className to the song's name to show it on song change
+    //makes song name visible on song change
     useEffect(() => {
-        setSongChange(true);
+        setSongChangeClassName(true);
         const timer = setTimeout(() => {
-            setSongChange(false);
+            setSongChangeClassName(false);
         }, 1000);
         return () => clearTimeout(timer)
     }, [songIndex]);
@@ -46,41 +50,6 @@ const Player = (props) => {
         }, 1000);
         return () => clearInterval(skipSongOnCompletion);
     });
-
-    useEffect(() => {
-        window.addEventListener('keydown', keyDownHandler)
-        return () => window.removeEventListener('keydown', keyDownHandler)
-    });
-
-    const keyDownHandler = (e) => {
-        const key = e.code
-        if (key === 'Space') {
-            e.preventDefault();
-            setIsPlaying(!isPlaying)
-        } if (key === 'ArrowRight') {
-            e.preventDefault();
-            skipSong();
-        } if (key === 'ArrowLeft') {
-            e.preventDefault();
-            skipSong(false);
-        } if (key === 'ArrowUp' || key === 'Equal' || key === 'NumpadAdd') {
-            e.preventDefault();
-            const newVolume = volume + 0.01
-            if (newVolume < 1) {
-                setVolume(newVolume)
-            } else {
-                setVolume(1);
-            }
-        } if (key === 'ArrowDown' || key === 'Minus' || key === 'NumpadSubtract') {
-            e.preventDefault();
-            const newVolume = volume - 0.01
-            if (newVolume > 0) {
-                setVolume(newVolume)
-            } else {
-                setVolume(0);
-            }
-        }
-    };
     
     const skipSong = (forwards = true) => {
         if (forwards) {
@@ -102,56 +71,17 @@ const Player = (props) => {
         }
     };
 
-    //tried to update duration inside Progressbar.js on a useEffect, but found updating here onLoadedMetaData to be more consistent
-    const updateProgressBarDuration = () => {
-        const seconds = Math.round(audioRef.current.duration)
-        if (!isNaN(seconds)) {
-            progressBarRef.current.max = seconds
-            setDuration(calcDisplayTime(seconds))
-        }
-    };
-
-    const calcDisplayTime = (seconds) => {
-        let sec = seconds;
-        let min = 0;
-        while (sec >= 60) {
-            min++;
-            sec = sec - 60;
-        }
-        if (sec < 10) {
-            sec = `0${sec}`;
-        }
-        return `${min}:${sec}`;
-    };
-
     return (
         <div className={style.player}>
-            <audio ref={audioRef} src={songs[songIndex].src} onLoadedMetadata={updateProgressBarDuration}></audio>
+            <audio ref={audioRef} src={songs[songIndex].src} onLoadedMetadata={() => {progressRef.current.updateProgressBarDuration()}}></audio>
             <div className={`centerFlex positionBottom`}>
-                <h2 className={`${style.name} ${isPlaying ?  '' : 'pauseHeading'} ${songChange ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
+                <h2 className={`${style.name} ${isPlaying ?  '' : 'pauseHeading'} ${songChangeClassName ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
             </div>
-            <Tracklist 
-                songs={songs} 
-                setSongIndex={setSongIndex} 
-                isPlaying={isPlaying}
-            />
-            <Volume 
-                volume={volume} 
-                setVolume={setVolume} 
-                isPlaying={isPlaying}
-            />
-            <Controls
-                skipSong={skipSong}
-                isPlaying={isPlaying} 
-                setIsPlaying={setIsPlaying} 
-            />
-            <Progressbar 
-                audioRef={audioRef}
-                progressBarRef={progressBarRef}
-                duration={duration}
-                calcDisplayTime={calcDisplayTime}
-                isPlaying={isPlaying}
-            />
+            <Tracklist songs={songs} setSongIndex={setSongIndex}/>
+            <Volume volume={volume} setVolume={setVolume} />
+            <Controls skipSong={skipSong}/>
+            <Progressbar ref={progressRef} audioRef={audioRef}/>
+            <KeyboardListener skipSong={skipSong} volume={volume} setVolume={setVolume} />
         </div>
     );
 };

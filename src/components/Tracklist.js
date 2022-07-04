@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import style from './style/tracklist.module.css'
+import AppContext from './AppContext';
 
 const Tracklist = (props) => {
-    const {songs, setSongIndex, isPlaying} = props;
-
+    const { songs, setSongIndex } = props;
+    const { isPlaying } = useContext(AppContext);
     const [visible, setVisible] = useState(false);
 
     return (

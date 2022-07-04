@@ -1,13 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { getDownloadURL, ref } from "firebase/storage";
-import { storage } from '../services/firebase';
+import React, { useRef, useEffect, useContext } from 'react';
 import style from './style/video.module.css';
+import useVideoSrc from './CustomHooks/useVideoSrc';
+import AppContext from './AppContext';
 
 
 const Background = (props) => {
-    const {isPlaying} = props;
+    const { isPlaying } = useContext(AppContext);
     const videoRef = useRef(undefined);
-    const [src, setSrc] = useState(undefined)
+    const [src] = useVideoSrc('video/Background.mp4')
 
     useEffect(() => { 
         if (isPlaying) {
@@ -16,17 +16,6 @@ const Background = (props) => {
             videoRef.current.pause();
         }
     });
-
-    useEffect(() => {
-        if (!src) {
-            const backgroundRef = ref(storage, 'video/Background.mp4');
-            getDownloadURL(backgroundRef)
-            .then((url) => {
-                setSrc(url)
-            })
-        }
-        //eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
     return (
         <div className={style.container}>

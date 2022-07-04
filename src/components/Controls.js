@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useContext }from 'react';
 import style from './style/controls.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
+import AppContext from './AppContext';
 
 const Controls = (props) => {
-    const {isPlaying, setIsPlaying, skipSong} = props
+    const { skipSong } = props
+    const { isPlaying, setIsPlaying } = useContext(AppContext);
 
     const hideWhilePlaying = () => {
-        if (isPlaying) {
-            return style.hideButton
-        }
-        return style.showButton
+        return isPlaying ? style.hideButton : style.showButton;
     };
 
     return (
