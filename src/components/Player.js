@@ -39,17 +39,6 @@ const Player = (props) => {
         }, 1000);
         return () => clearTimeout(timer)
     }, [songIndex]);
-
-    useEffect(() => {
-        const skipSongOnCompletion = setInterval(() => {
-            const time = audioRef.current.currentTime;
-            const duration = audioRef.current.duration;
-            if (time === duration) {
-                skipSong();
-            }
-        }, 1000);
-        return () => clearInterval(skipSongOnCompletion);
-    });
     
     const skipSong = (forwards = true) => {
         if (forwards) {
@@ -73,9 +62,14 @@ const Player = (props) => {
 
     return (
         <div className={style.player}>
-            <audio ref={audioRef} src={songs[songIndex].src} onLoadedMetadata={() => {progressRef.current.updateProgressBarDuration()}}></audio>
+            <audio 
+                ref={audioRef} 
+                src={songs[songIndex].src} 
+                onLoadedMetadata={() => {progressRef.current.updateProgressBarDuration()}}
+                onEnded={() => skipSong()}
+                />
             <div className={`centerFlex positionBottom`}>
-                <h2 className={`${style.name} ${!isPlaying && 'pauseHeading'} ${songChangeClassName ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
+                <h2 className={`${style.name} ${!isPlaying && 'pauseHeading'} ${songChangeClassName && style.nameGlow}`}>{songs[songIndex].title}</h2>
             </div>
             <Tracklist songs={songs} setSongIndex={setSongIndex}/>
             <Volume volume={volume} setVolume={setVolume} />
