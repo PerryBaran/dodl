@@ -7,10 +7,7 @@ const Controls = (props) => {
     const {isPlaying, setIsPlaying, skipSong} = props
 
     const hideWhilePlaying = () => {
-        if (isPlaying) {
-            return style.hideButton
-        }
-        return style.showButton
+        return isPlaying ? style.hideButton : style.showButton;
     };
 
     return (
