@@ -5,12 +5,16 @@ import Tracklist from './Tracklist';
 import Volume from './Volume';
 import Controls from './Controls';
 import Progressbar from './Progressbar';
+import songList from '../songList'
+import useSongs from './CustomHooks/useSongs';
 
 const Player = (props) => {
-    const {songs, songIndex, setSongIndex, isPlaying, setIsPlaying } = props;
+    const { isPlaying, setIsPlaying } = props;
     const audioRef = useRef(null);
     const progressBarRef = useRef(null);
 
+    const [songs] = useSongs(songList);
+    const [songIndex, setSongIndex] = useState(0);
     const [volume, setVolume] = useState(getLocalVolume());
     const [songChange, setSongChange] = useState(false);
     const [duration, setDuration] = useState('0:00');
