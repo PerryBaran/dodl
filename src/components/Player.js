@@ -1,15 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import useSongs from './CustomHooks/useSongs';
 import style from './style/player.module.css';
+import songList from '../songList'
 import { getLocalVolume } from '../services/localStorage';
 import Tracklist from './Tracklist';
 import Volume from './Volume';
 import Controls from './Controls';
 import Progressbar from './Progressbar';
-import songList from '../songList'
-import useSongs from './CustomHooks/useSongs';
+import KeyboardListener from './KeyboardListener';
+import AppContext from './AppContext';
 
 const Player = (props) => {
-    const { isPlaying, setIsPlaying } = props;
+    const { isPlaying } = useContext(AppContext);
     const audioRef = useRef(undefined);
     const progressRef = useRef(undefined);
     const [songs] = useSongs(songList);
@@ -48,41 +50,6 @@ const Player = (props) => {
         }, 1000);
         return () => clearInterval(skipSongOnCompletion);
     });
-
-    useEffect(() => {
-        window.addEventListener('keydown', keyDownHandler)
-        return () => window.removeEventListener('keydown', keyDownHandler)
-    });
-
-    const keyDownHandler = (e) => {
-        const key = e.code
-        if (key === 'Space') {
-            e.preventDefault();
-            setIsPlaying(!isPlaying)
-        } if (key === 'ArrowRight') {
-            e.preventDefault();
-            skipSong();
-        } if (key === 'ArrowLeft') {
-            e.preventDefault();
-            skipSong(false);
-        } if (key === 'ArrowUp' || key === 'Equal' || key === 'NumpadAdd') {
-            e.preventDefault();
-            const newVolume = volume + 0.01
-            if (newVolume < 1) {
-                setVolume(newVolume)
-            } else {
-                setVolume(1);
-            }
-        } if (key === 'ArrowDown' || key === 'Minus' || key === 'NumpadSubtract') {
-            e.preventDefault();
-            const newVolume = volume - 0.01
-            if (newVolume > 0) {
-                setVolume(newVolume)
-            } else {
-                setVolume(0);
-            }
-        }
-    };
     
     const skipSong = (forwards = true) => {
         if (forwards) {
@@ -110,26 +77,11 @@ const Player = (props) => {
             <div className={`centerFlex positionBottom`}>
                 <h2 className={`${style.name} ${isPlaying ?  '' : 'pauseHeading'} ${songChangeClassName ? style.nameGlow : ''}`}>{songs[songIndex].title}</h2>
             </div>
-            <Tracklist 
-                songs={songs} 
-                setSongIndex={setSongIndex} 
-                isPlaying={isPlaying}
-            />
-            <Volume 
-                volume={volume} 
-                setVolume={setVolume} 
-                isPlaying={isPlaying}
-            />
-            <Controls
-                skipSong={skipSong}
-                isPlaying={isPlaying} 
-                setIsPlaying={setIsPlaying} 
-            />
-            <Progressbar 
-                ref={progressRef}
-                audioRef={audioRef}
-                isPlaying={isPlaying}
-            />
+            <Tracklist songs={songs} setSongIndex={setSongIndex}/>
+            <Volume volume={volume} setVolume={setVolume} />
+            <Controls skipSong={skipSong}/>
+            <Progressbar ref={progressRef} audioRef={audioRef}/>
+            <KeyboardListener skipSong={skipSong} volume={volume} setVolume={setVolume} />
         </div>
     );
 };

@@ -1,10 +1,11 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import style from './style/video.module.css';
 import useVideoSrc from './CustomHooks/useVideoSrc';
+import AppContext from './AppContext';
 
 
 const Background = (props) => {
-    const { isPlaying } = props;
+    const { isPlaying } = useContext(AppContext);
     const videoRef = useRef(undefined);
     const [src] = useVideoSrc('video/Background.mp4')
 

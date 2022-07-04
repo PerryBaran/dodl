@@ -1,11 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import style from './style/volume.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeHigh, faVolumeLow } from '@fortawesome/free-solid-svg-icons';
 import { populateStorage } from '../services/localStorage';
+import AppContext from './AppContext';
 
 const Volume = (props) => {
-    const {volume, setVolume ,isPlaying} = props;
+    const { volume, setVolume } = props;
+    const { isPlaying } = useContext(AppContext)
 
     const [visible, setVisible] = useState(false);
     const [icon, setIcon] = useState(faVolumeHigh);

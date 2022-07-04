@@ -1,8 +1,10 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef, useContext } from 'react';
 import style from './style/progressbar.module.css';
+import AppContext from './AppContext';
 
 const Progressbar = forwardRef((props, ref) => {
-    const {audioRef, isPlaying} = props
+    const { audioRef } = props
+    const { isPlaying } = useContext(AppContext);
 
     const progressBarRef = useRef(undefined);
     const [duration, setDuration] = useState('0:00');
