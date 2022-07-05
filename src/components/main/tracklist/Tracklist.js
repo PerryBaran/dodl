@@ -6,12 +6,12 @@ import AppContext from '../../../utils/context/AppContext';
 
 const Tracklist = (props) => {
     const { songs, setSongIndex } = props;
-    const { isPlaying } = useContext(AppContext);
+    const { hideWhilePlaying } = useContext(AppContext);
     const [visible, setVisible] = useState(false);
 
     return (
         <div className={style.tracklistContainer} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
-            <i className={`${style.tracklistButton} ${!isPlaying && style.pause}`}>
+            <i className={`${style.tracklistButton} ${hideWhilePlaying(style.pause)}`}>
                 <FontAwesomeIcon icon={faBars} />
             </i>
             <ul style={{display: visible ? 'block' : 'none' }}>

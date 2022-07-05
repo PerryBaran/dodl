@@ -1,12 +1,10 @@
-import React, { useContext }from 'react';
+import React from 'react';
 import style from './mediaControls.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
-import AppContext from '../../../utils/context/AppContext';
 
 const MediaControls = (props) => {
-    const { skipSong } = props
-    const { isPlaying, setIsPlaying } = useContext(AppContext);
+    const { isPlaying, setIsPlaying, skipSong } = props
 
     const hideWhilePlaying = () => {
         return isPlaying ? style.hideButton : style.showButton;

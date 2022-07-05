@@ -4,7 +4,7 @@ import AppContext from '../../../utils/context/AppContext';
 
 const Progressbar = forwardRef((props, ref) => {
     const { audioRef } = props
-    const { isPlaying } = useContext(AppContext);
+    const { hideWhilePlaying } = useContext(AppContext);
 
     const progressBarRef = useRef(undefined);
     const [duration, setDuration] = useState('0:00');
@@ -50,9 +50,9 @@ const Progressbar = forwardRef((props, ref) => {
 
     return (
         <div className={`${style.progress} centerFlex positionBottom `}>
-            <p className={`${style.displayTime} ${style.time} ${!isPlaying && style.pause}`}>{time}</p>
+            <p className={`${style.displayTime} ${style.time} ${hideWhilePlaying(style.pause)}`}>{time}</p>
             <input 
-                className={`${style.progressBar} ${!isPlaying && style.pause}`}
+                className={`${style.progressBar} ${hideWhilePlaying(style.pause)}`}
                 ref={progressBarRef}
                 type='range' 
                 name='time'
@@ -60,7 +60,7 @@ const Progressbar = forwardRef((props, ref) => {
                 defaultValue={0}
                 onChange={(e)=> changeHandler(e.target.value)}
             />
-            <p className={`${style.displayTime} ${style.duration} ${!isPlaying && style.pause}`}>{duration}</p>
+            <p className={`${style.displayTime} ${style.duration} ${hideWhilePlaying(style.pause)}`}>{duration}</p>
         </div>
     );
 });

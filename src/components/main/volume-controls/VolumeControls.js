@@ -7,7 +7,7 @@ import AppContext from '../../../utils/context/AppContext';
 
 const VolumeControls = (props) => {
     const { volume, setVolume } = props;
-    const { isPlaying } = useContext(AppContext)
+    const { hideWhilePlaying } = useContext(AppContext)
 
     const [visible, setVisible] = useState(false);
     const [icon, setIcon] = useState(faVolumeHigh);
@@ -32,7 +32,7 @@ const VolumeControls = (props) => {
     return (
         <div className={style.volume} style={{height: visible ? '270px' : 'auto'}} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
             <div className={`centerFlex ${style.volumeIconContainer}`}>
-                <i className={`${style.volumeIcon} ${!isPlaying && style.pause}`}>
+                <i className={`${style.volumeIcon} ${hideWhilePlaying(style.pause)}`}>
                     <FontAwesomeIcon icon={icon}/>
                 </i>
             </div>

@@ -4,7 +4,7 @@ import AppContext from '../../../utils/context/AppContext';
 
 const SongName = (props) => {
     const { songs, songIndex } = props
-    const { isPlaying } = useContext(AppContext);
+    const { hideWhilePlaying } = useContext(AppContext);
     const [songChangeClassName, setSongChangeClassName] = useState(false);
 
     //makes song name visible on song change
@@ -18,7 +18,7 @@ const SongName = (props) => {
 
     return (
         <div className={`centerFlex positionBottom`}>
-            <h2 className={`${style.name} ${!isPlaying && style.pause} ${songChangeClassName && style.nameGlow}`}>{songs[songIndex].title}</h2>
+            <h2 className={`${style.name} ${hideWhilePlaying(style.pause)} ${songChangeClassName && style.nameGlow}`}>{songs[songIndex].title}</h2>
         </div>
     );
 }

@@ -7,12 +7,18 @@ import AppContext from '../utils/context/AppContext';
 
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  
+  const hideWhilePlaying = (input) => {
+    if (!isPlaying) {
+      return input
+    }
+  }
 
   return (
-    <AppContext.Provider value={{isPlaying, setIsPlaying}}>
+    <AppContext.Provider value={{isPlaying, setIsPlaying, hideWhilePlaying}}>
       <Header text={'Dreaming of Detuned Love'}/>
-      <Background/>
-      <Player/>
+      <Background isPlaying={isPlaying}/>
+      <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
       <Footer/>
     </AppContext.Provider>
   );
