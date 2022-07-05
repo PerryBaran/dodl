@@ -22,7 +22,7 @@
     cursor: pointer;
 }
 
-.tracklistContainer:hover > button {
+.tracklistContainer:hover > i {
     color: white;
     transition-duration: 300ms;
 }

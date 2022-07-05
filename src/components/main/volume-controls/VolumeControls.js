@@ -31,10 +31,10 @@ const VolumeControls = (props) => {
 
     return (
         <div className={style.volume} style={{height: visible ? '270px' : 'auto'}} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
-            <div className={`centerFlex ${style.volumeButtonContainer}`}>
-                <button className={`${style.volumeButton} ${!isPlaying && style.pause}`}>
+            <div className={`centerFlex ${style.volumeIconContainer}`}>
+                <i className={`${style.volumeIcon} ${!isPlaying && style.pause}`}>
                     <FontAwesomeIcon icon={icon}/>
-                </button>
+                </i>
             </div>
             <input 
                 className={style.volumeSlider}

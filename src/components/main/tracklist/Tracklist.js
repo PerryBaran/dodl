@@ -11,9 +11,9 @@ const Tracklist = (props) => {
 
     return (
         <div className={style.tracklistContainer} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
-            <button className={`${style.tracklistButton} ${!isPlaying && style.pause}`}>
+            <i className={`${style.tracklistButton} ${!isPlaying && style.pause}`}>
                 <FontAwesomeIcon icon={faBars} />
-            </button>
+            </i>
             <ul style={{display: visible ? 'block' : 'none' }}>
                 {songs.map((song => {
                     const index = songs.indexOf(song)

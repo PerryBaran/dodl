@@ -8,7 +8,7 @@
     cursor: pointer;
 }
 
-.volumeButtonContainer {
+.volumeIconContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +18,7 @@
     overflow: visible;
 }
 
-.volumeButton {
+.volumeIcon {
     all: unset;
 
     color: black;
@@ -29,7 +29,7 @@
     transition-duration: 5s;
 }
 
-.volume:hover .volumeButton {
+.volume:hover .volumeIcon {
     color: white;
     transition-duration: 300ms;
 }
