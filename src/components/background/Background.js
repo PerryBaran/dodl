@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, useContext } from 'react';
-import style from './style/video.module.css';
-import useVideoSrcFirebase from './CustomHooks/useVideoSrcFirebase';
-import AppContext from './AppContext';
+import style from './background.module.css';
+import useVideoSrcFirebase from '../../utils/hooks/useVideoSrcFirebase';
+import AppContext from '../../utils/context/AppContext';
 
 
 const Background = (props) => {
     const { isPlaying } = useContext(AppContext);
+    const [src] = useVideoSrcFirebase('video/Background.mp4');
     const videoRef = useRef(undefined);
-    const [src] = useVideoSrcFirebase('video/Background.mp4')
 
     useEffect(() => { 
         if (isPlaying) {

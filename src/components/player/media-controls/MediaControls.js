@@ -1,10 +1,10 @@
 import React, { useContext }from 'react';
-import style from './style/controls.module.css';
+import style from './mediaControls.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
-import AppContext from './AppContext';
+import AppContext from '../../../utils/context/AppContext';
 
-const Controls = (props) => {
+const MediaControls = (props) => {
     const { skipSong } = props
     const { isPlaying, setIsPlaying } = useContext(AppContext);
 
@@ -29,4 +29,4 @@ const Controls = (props) => {
     );
 };
 
-export default Controls
+export default MediaControls

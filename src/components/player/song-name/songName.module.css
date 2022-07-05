@@ -1,0 +1,38 @@
+.name {
+    margin-bottom: 50px;
+
+    opacity: 0;
+
+    font-size: 4rem;
+    font-weight: 100;
+    text-shadow: var(--pinkShadow);
+
+    transition-duration: 30s;
+
+    overflow: visible;
+    text-align: center;
+    z-index: 20;
+}
+.name:hover {
+    color: white;
+    opacity: 1;
+    transition-duration: 500ms;
+}
+
+.nameGlow {
+    color: white;
+    opacity: 1;
+    transition-duration: 500ms;
+}
+
+.pause {
+    color: white;
+    opacity: 1;
+    transition-duration: 4s;
+}
+
+@media screen and (max-width: 1262px), screen and (max-height: 550px) {
+    .name {
+        font-size: 2rem;
+    }
+}

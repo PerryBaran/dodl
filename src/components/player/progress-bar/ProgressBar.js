@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef, useContext } from 'react';
-import style from './style/progressbar.module.css';
-import AppContext from './AppContext';
+import style from './progressBar.module.css';
+import AppContext from '../../../utils/context/AppContext';
 
 const Progressbar = forwardRef((props, ref) => {
     const { audioRef } = props

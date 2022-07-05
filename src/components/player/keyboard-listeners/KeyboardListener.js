@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import AppContext from './AppContext';
+import AppContext from '../../../utils/context/AppContext';
 
 const KeyboardListener = (props) => {
     const { skipSong, volume, setVolume} = props

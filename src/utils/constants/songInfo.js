@@ -1,6 +1,6 @@
 //inconsistent capatilization in song titles because it looks good with the font
 //to add src directly, pass a falsey value to ref
-const songList = [
+const songInfo = [
     {
       title: "slumber", 
       src: undefined,
@@ -28,4 +28,4 @@ const songList = [
     }
 ]
 
-export default songList
+export default songInfo

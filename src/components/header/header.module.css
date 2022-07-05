@@ -1,0 +1,49 @@
+.header {
+    text-align: center;
+    vertical-align: middle;
+
+    width: 100%;
+    padding-left: 125px;
+    padding-right: 125px;
+
+    opacity: 0;
+
+    font-size: 4.5rem;
+    font-weight: 100;
+    text-shadow: var(--pinkShadow);
+
+    transition-duration: 30s;
+
+    overflow: visible;
+    z-index: 20;
+}
+
+.headerContainer {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    height: 40px;
+
+    overflow: visible;
+}
+
+.header:hover {
+    color: white;
+    opacity: 1;
+    transition-duration: 500ms;
+}
+
+.pause {
+    color: white;
+    opacity: 1;
+    transition-duration: 4s;
+}
+
+@media screen and (max-width: 1262px), screen and (max-height: 550px) {
+    .header {
+        font-size: 1.5rem;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}

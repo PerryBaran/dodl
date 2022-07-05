@@ -1,22 +1,21 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import useSongsSrcFirebase from './CustomHooks/useSongsSrcFirebase';
-import style from './style/player.module.css';
-import songList from '../songList'
-import { getLocalVolume } from '../services/localStorage';
-import Tracklist from './Tracklist';
-import Volume from './Volume';
-import Controls from './Controls';
-import Progressbar from './Progressbar';
-import KeyboardListener from './KeyboardListener';
-import AppContext from './AppContext';
+import useSongsSrcFirebase from '../../utils/hooks/useSongsSrcFirebase';
+import songInfo from '../../utils/constants/songInfo'
+import { getLocalVolume } from '../../services/localStorage';
+import Tracklist from './tracklist/Tracklist';
+import VolumeControls from './volume-controls/VolumeControls';
+import MediaControls from './media-controls/MediaControls';
+import Progressbar from './progress-bar/ProgressBar';
+import KeyboardListener from './keyboard-listeners/KeyboardListener';
+import SongName from './song-name/SongName';
+import AppContext from '../../utils/context/AppContext';
 
 const Player = (props) => {
     const { isPlaying } = useContext(AppContext);
     
-    const [songs] = useSongsSrcFirebase(songList);
+    const [songs] = useSongsSrcFirebase(songInfo);
     const [songIndex, setSongIndex] = useState(0);
     const [volume, setVolume] = useState(getLocalVolume());
-    const [songChangeClassName, setSongChangeClassName] = useState(false);
     
     const audioRef = useRef(undefined);
     const progressRef = useRef(undefined);
@@ -32,15 +31,6 @@ const Player = (props) => {
     useEffect(() => {
         audioRef.current.volume = volume;
     }, [volume]);
-
-    //makes song name visible on song change
-    useEffect(() => {
-        setSongChangeClassName(true);
-        const timer = setTimeout(() => {
-            setSongChangeClassName(false);
-        }, 1000);
-        return () => clearTimeout(timer)
-    }, [songIndex]);
     
     const skipSong = (forwards = true) => {
         if (forwards) {
@@ -63,22 +53,20 @@ const Player = (props) => {
     };
 
     return (
-        <div className={style.player}>
+        <main style={{widith: '100%'}}>
             <audio 
                 ref={audioRef} 
                 src={songs[songIndex].src} 
                 onLoadedMetadata={() => {progressRef.current.updateProgressBarDuration()}}
                 onEnded={() => skipSong()}
                 />
-            <div className={`centerFlex positionBottom`}>
-                <h2 className={`${style.name} ${!isPlaying && 'pauseHeading'} ${songChangeClassName && style.nameGlow}`}>{songs[songIndex].title}</h2>
-            </div>
+            <SongName songs={songs} songIndex={songIndex}/>
             <Tracklist songs={songs} setSongIndex={setSongIndex}/>
-            <Volume volume={volume} setVolume={setVolume} />
-            <Controls skipSong={skipSong}/>
+            <VolumeControls volume={volume} setVolume={setVolume} />
+            <MediaControls skipSong={skipSong}/>
             <Progressbar ref={progressRef} audioRef={audioRef}/>
             <KeyboardListener skipSong={skipSong} volume={volume} setVolume={setVolume} />
-        </div>
+        </main>
     );
 };
 

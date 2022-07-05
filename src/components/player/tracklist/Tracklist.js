@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import style from './style/tracklist.module.css'
-import AppContext from './AppContext';
+import style from './tracklist.module.css'
+import AppContext from '../../../utils/context/AppContext';
 
 const Tracklist = (props) => {
     const { songs, setSongIndex } = props;

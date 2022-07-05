@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import style from './style/volume.module.css';
+import style from './volumeControls.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeHigh, faVolumeLow } from '@fortawesome/free-solid-svg-icons';
-import { populateStorage } from '../services/localStorage';
-import AppContext from './AppContext';
+import { populateStorage } from '../../../services/localStorage';
+import AppContext from '../../../utils/context/AppContext';
 
-const Volume = (props) => {
+const VolumeControls = (props) => {
     const { volume, setVolume } = props;
     const { isPlaying } = useContext(AppContext)
 
@@ -33,7 +33,7 @@ const Volume = (props) => {
         <div className={style.volume} style={{height: visible ? '270px' : 'auto'}} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
             <div className={`centerFlex ${style.volumeButtonContainer}`}>
                 <button className={`${style.volumeButton} ${!isPlaying && style.pause}`}>
-                    <FontAwesomeIcon icon={icon} />
+                    <FontAwesomeIcon icon={icon}/>
                 </button>
             </div>
             <input 
@@ -51,4 +51,4 @@ const Volume = (props) => {
     );
 };
 
-export default Volume
+export default VolumeControls
