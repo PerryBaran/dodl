@@ -13,7 +13,7 @@ export function populateStorage(name, value) {
 
 export function getLocalVolume() {
     const localVolume = getLocalStorage('volume');
-    if (localVolume !== undefined) {
+    if (localVolume) {
         return Number(localVolume)
     }
     return 0.5

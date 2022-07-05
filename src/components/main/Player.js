@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import useSongsSrcFirebase from '../../utils/hooks/useSongsSrcFirebase';
+import useSrcArrayFirebase from '../../utils/hooks/useSrcArrayFirebase';
 import songInfo from '../../utils/constants/songInfo'
 import { getLocalVolume } from '../../services/localStorage';
 import Tracklist from './tracklist/Tracklist';
@@ -13,7 +13,7 @@ import AppContext from '../../utils/context/AppContext';
 const Player = (props) => {
     const { isPlaying } = useContext(AppContext);
     
-    const [songs] = useSongsSrcFirebase(songInfo);
+    const [songs] = useSrcArrayFirebase(songInfo);
     const [songIndex, setSongIndex] = useState(0);
     const [volume, setVolume] = useState(getLocalVolume());
     
@@ -53,19 +53,19 @@ const Player = (props) => {
     };
 
     return (
-        <main style={{widith: '100%'}}>
+        <main>
             <audio 
                 ref={audioRef} 
                 src={songs[songIndex].src} 
                 onLoadedMetadata={() => {progressRef.current.updateProgressBarDuration()}}
                 onEnded={() => skipSong()}
-                />
+            />
             <SongName songs={songs} songIndex={songIndex}/>
             <Tracklist songs={songs} setSongIndex={setSongIndex}/>
             <VolumeControls volume={volume} setVolume={setVolume} />
             <MediaControls skipSong={skipSong}/>
             <Progressbar ref={progressRef} audioRef={audioRef}/>
-            <KeyboardListener skipSong={skipSong} volume={volume} setVolume={setVolume} />
+            <KeyboardListener skipSong={skipSong} volume={volume} setVolume={setVolume}/>
         </main>
     );
 };

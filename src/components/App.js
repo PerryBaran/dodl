@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Background from './background/Background';
-import Player from './player/Player';
+import Player from './main/Player';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import AppContext from '../utils/context/AppContext';
