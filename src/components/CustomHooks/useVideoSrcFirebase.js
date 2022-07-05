@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { storage } from "../../services/firebase";
 import { ref, getDownloadURL  } from "firebase/storage";
 
-export default function useVideoSrc(path){
+export default function useVideoSrcFirebase(path){
     const [src, setSrc] = useState(undefined)
 
     useEffect(() => {

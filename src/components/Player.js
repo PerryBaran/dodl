@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import useSongs from './CustomHooks/useSongs';
+import useSongsSrcFirebase from './CustomHooks/useSongsSrcFirebase';
 import style from './style/player.module.css';
 import songList from '../songList'
 import { getLocalVolume } from '../services/localStorage';
@@ -13,7 +13,7 @@ import AppContext from './AppContext';
 const Player = (props) => {
     const { isPlaying } = useContext(AppContext);
     
-    const [songs] = useSongs(songList);
+    const [songs] = useSongsSrcFirebase(songList);
     const [songIndex, setSongIndex] = useState(0);
     const [volume, setVolume] = useState(getLocalVolume());
     const [songChangeClassName, setSongChangeClassName] = useState(false);

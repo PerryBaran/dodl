@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { storage } from '../../services/firebase';
 import { ref, getDownloadURL  } from "firebase/storage";
 
-export default function useSongs(songList){
+export default function useSongsSrcFirebase(songList){
     const [songs, setSongs] = useState(songList);
   
     useEffect(() => {
