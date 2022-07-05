@@ -12,10 +12,11 @@ const App = () => {
     if (!isPlaying) {
       return input
     }
+    return ''
   }
 
   return (
-    <AppContext.Provider value={{isPlaying, setIsPlaying, hideWhilePlaying}}>
+    <AppContext.Provider value={{hideWhilePlaying}}>
       <Header text={'Dreaming of Detuned Love'}/>
       <Background isPlaying={isPlaying}/>
       <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
