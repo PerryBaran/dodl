@@ -3,7 +3,7 @@
     width: 100%;
 }
 
-.controls > button {
+.control {
     width: 33%;
     height: 60vh;
 
@@ -12,19 +12,17 @@
     filter: drop-shadow(0 0 10px var(--lightPink));
 
     font-size: 15rem;
-}
 
-.showButton {
-    opacity: 0.4;
-    transition-duration: 2s;
-}
-
-.hideButton {
     opacity: 0;
     transition-duration: 15s;
 }
 
-.controls > button:hover {
+.pause {
+    opacity: 0.4;
+    transition-duration: 2s;
+}
+
+.control:hover {
     opacity: 0.8;
     transition-duration: 500ms;
 }
