@@ -11,13 +11,13 @@ const MediaControls = (props) => {
     return (
         <div className={`centerFlex positionTop`}>
                 <div className={`${style.controls} ${style.middle}`}>
-                    <button className={`${style.control} ${style.backwards} ${hideWhilePlaying(style.pause)}`} onClick={() => skipSong(false)}>
+                    <button className={`${style.control} ${hideWhilePlaying(style.pause)}`} onClick={() => skipSong(false)}>
                         <FontAwesomeIcon icon={faBackward} />
                     </button>
-                    <button className={`${style.control} ${style.playPause} ${hideWhilePlaying(style.pause)}`} onClick={() => setIsPlaying(!isPlaying)}>
+                    <button className={`${style.control} ${hideWhilePlaying(style.pause)}`} onClick={() => setIsPlaying(!isPlaying)}>
                         <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
                     </button>
-                    <button className={`${style.control} ${style.forward} ${hideWhilePlaying(style.pause)}`}>
+                    <button className={`${style.control} ${hideWhilePlaying(style.pause)}`}>
                         <FontAwesomeIcon icon={faForward} onClick={() => skipSong()}/>
                     </button>
                 </div>
