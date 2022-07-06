@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import useSrcArrayFirebase from '../../utils/hooks/useSrcArrayFirebase';
-import songInfo from '../../utils/constants/songInfo'
+import useSrcArrayFirebase from '../../hooks/useSrcArrayFirebase';
+import songInfo from '../songInfo'
 import { getLocalVolume } from '../../services/localStorage';
 import Tracklist from './tracklist/Tracklist';
 import VolumeControls from './volume-controls/VolumeControls';

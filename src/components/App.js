@@ -9,10 +9,7 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   
   const hideWhilePlaying = (input) => {
-    if (!isPlaying) {
-      return input
-    }
-    return ''
+    return isPlaying? '' : input
   }
 
   return (

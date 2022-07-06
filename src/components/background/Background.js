@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import style from './background.module.css';
-import useSrcFirebase from '../../utils/hooks/useSrcFirebase';
+import useSrcFirebase from '../../hooks/useSrcFirebase';
 
 
 const Background = (props) => {
@@ -11,7 +11,7 @@ const Background = (props) => {
     useEffect(() => {
         if (src) {
             if (isPlaying) {
-            videoRef.current.play();
+                videoRef.current.play();
             } else {
                 videoRef.current.pause();
             }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getURL } from "../../services/firebase";
+import { getURL } from "../services/firebase";
 
 export default function useSrcFirebase(path){
     const [src, setSrc] = useState(undefined);
