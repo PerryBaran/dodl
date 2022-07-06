@@ -11,7 +11,7 @@ const Tracklist = (props) => {
 
     return (
         <div className={style.tracklistContainer} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
-            <i className={`${style.tracklistButton} ${hideWhilePlaying(style.pause)}`}>
+            <i className={`${style.tracklistButton} ${hideWhilePlaying(style.pause)}`} data-testid='icon'>
                 <FontAwesomeIcon icon={faBars} />
             </i>
             <ul style={{display: visible ? 'block' : 'none' }}>
