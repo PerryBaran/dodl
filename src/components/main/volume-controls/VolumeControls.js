@@ -11,7 +11,7 @@ const VolumeControls = (props) => {
 
     const [visible, setVisible] = useState(false);
     const [icon, setIcon] = useState(faVolumeHigh);
-    const volRef = useRef(null);
+    const volRef = useRef(undefined);
 
     useEffect(() => {
         setIcon(()=> {    
@@ -32,7 +32,7 @@ const VolumeControls = (props) => {
     return (
         <div className={style.volume} style={{height: visible ? '270px' : 'auto'}} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
             <div className={`centerFlex ${style.volumeIconContainer}`}>
-                <i className={`${style.volumeIcon} ${hideWhilePlaying(style.pause)}`}>
+                <i className={`${style.volumeIcon} ${hideWhilePlaying(style.pause)}`} data-testid="icon">
                     <FontAwesomeIcon icon={icon}/>
                 </i>
             </div>
@@ -46,6 +46,7 @@ const VolumeControls = (props) => {
                 defaultValue={volume * 100} 
                 onChange={(e) => changeVolume(e)}
                 style={{display: visible ? 'block' : 'none' }}
+                data-testid="range"
             />
         </div>
     );
