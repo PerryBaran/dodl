@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef, useContext } from 'react';
 import style from './progressBar.module.css';
-import AppContext from '../../../utils/context/AppContext';
+import AppContext from '../../AppContext';
 
 const Progressbar = forwardRef((props, ref) => {
     const { audioRef } = props
@@ -27,7 +27,7 @@ const Progressbar = forwardRef((props, ref) => {
                 progressBarRef.current.value = seconds
                 setTime(calcDisplayTime(seconds))
             }    
-        }, 100);
+        }, 250);
         return () => clearInterval(updateTimer);
     });
     
@@ -44,7 +44,7 @@ const Progressbar = forwardRef((props, ref) => {
         return `${min}:${sec}`;
     };
 
-    const changeHandler = (value) => {
+    const changeTime = (value) => {
         audioRef.current.currentTime = value;
     };
 
@@ -58,7 +58,7 @@ const Progressbar = forwardRef((props, ref) => {
                 name='time'
                 min={0}
                 defaultValue={0}
-                onChange={(e)=> changeHandler(e.target.value)}
+                onChange={(e)=> changeTime(e.target.value)}
             />
             <p className={`${style.displayTime} ${style.duration} ${hideWhilePlaying(style.pause)}`}>{duration}</p>
         </div>

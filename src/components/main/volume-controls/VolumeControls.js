@@ -3,7 +3,7 @@ import style from './volumeControls.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeHigh, faVolumeLow } from '@fortawesome/free-solid-svg-icons';
 import { populateStorage } from '../../../services/localStorage';
-import AppContext from '../../../utils/context/AppContext';
+import AppContext from '../../AppContext';
 
 const VolumeControls = (props) => {
     const { volume, setVolume } = props;

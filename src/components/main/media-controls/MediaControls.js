@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import style from './mediaControls.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
-import AppContext from '../../../utils/context/AppContext';
+import AppContext from '../../AppContext';
 
 const MediaControls = (props) => {
     const { isPlaying, setIsPlaying, skipSong } = props

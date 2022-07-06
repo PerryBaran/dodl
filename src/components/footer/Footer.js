@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import style from './footer.module.css'
-import AppContext from '../../utils/context/AppContext';
+import AppContext from '../AppContext';
 
 const Footer = (props) => {
     const { hideWhilePlaying } = useContext(AppContext);

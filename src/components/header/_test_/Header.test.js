@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Header from "../Header";
-import AppContext from "../../../utils/context/AppContext";
+import AppContext from "../../AppContext";
 import renderer from "react-test-renderer";
 
 afterEach(cleanup);

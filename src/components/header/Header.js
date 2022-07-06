@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import AppContext from '../../utils/context/AppContext';
+import AppContext from '../AppContext';
 import style from './header.module.css';
 
 const Header = (props) => {
