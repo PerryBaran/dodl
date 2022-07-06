@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot while paused 1`] = `
+<div
+  className="centerFlex positionBottom"
+>
+  <h2
+    className="name pause "
+  >
+    dummy
+  </h2>
+</div>
+`;
+
+exports[`matches snapshot while playing 1`] = `
+<div
+  className="centerFlex positionBottom"
+>
+  <h2
+    className="name  nameGlow"
+  >
+    dummy
+  </h2>
+</div>
+`;
+
+exports[`matches snapshot with different songIndex 1`] = `
+<div
+  className="centerFlex positionBottom"
+>
+  <h2
+    className="name pause "
+  >
+    text
+  </h2>
+</div>
+`;
