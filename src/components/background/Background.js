@@ -8,13 +8,15 @@ const Background = (props) => {
     const [src] = useSrcFirebase('video/Background.mp4');
     const videoRef = useRef(undefined);
 
-    useEffect(() => { 
-        if (isPlaying) {
+    useEffect(() => {
+        if (src) {
+            if (isPlaying) {
             videoRef.current.play();
-        } else {
-            videoRef.current.pause();
-        }
-    });
+            } else {
+                videoRef.current.pause();
+            }
+        } 
+    }, [isPlaying, src]);
 
     return (
         <div className={style.container}>
