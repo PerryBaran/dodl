@@ -11,9 +11,9 @@ import SongName from './song-name/SongName';
 
 const Player = (props) => {
     const { isPlaying, setIsPlaying } = props;
-    
-    const [songs] = useSrcArrayFirebase(songInfo);
+
     const [songIndex, setSongIndex] = useState(0);
+    const [songs] = useSrcArrayFirebase(songInfo, songIndex);
     const [volume, setVolume] = useState(getLocalVolume());
     
     const audioRef = useRef(undefined);
@@ -56,7 +56,10 @@ const Player = (props) => {
             <audio 
                 ref={audioRef} 
                 src={songs[songIndex].src} 
-                onLoadedMetadata={() => {progressRef.current.updateProgressBarDuration()}}
+                onLoadedMetadata={() => {
+                  progressRef.current.updateProgressBarDuration()
+                  isPlaying && audioRef.current.play();
+                }}
                 onEnded={() => skipSong()}
             />
             <SongName songs={songs} songIndex={songIndex}/>
