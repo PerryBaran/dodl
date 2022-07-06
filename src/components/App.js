@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <AppContext.Provider value={{hideWhilePlaying}}>
-      <Header text={'Dreaming of Detuned Love'}/>
+      <Header/>
       <Background isPlaying={isPlaying}/>
       <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
       <Footer/>
