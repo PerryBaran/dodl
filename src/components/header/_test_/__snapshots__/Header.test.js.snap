@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot while paused 1`] = `
+<header
+  className="centerFlex headerContainer"
+>
+  <h1
+    className="header pause"
+  >
+    Dreaming of Detuned Love
+  </h1>
+</header>
+`;
+
+exports[`matches snapshot while playing 1`] = `
+<header
+  className="centerFlex headerContainer"
+>
+  <h1
+    className="header "
+  >
+    Dreaming of Detuned Love
+  </h1>
+</header>
+`;

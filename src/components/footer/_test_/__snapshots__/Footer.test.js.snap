@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot while paused 1`] = `
+<footer>
+  <a
+    className="attribution left pause"
+    href="https://distrokid.com/hyperfollow/jenico/dreaming-of-detuned-love"
+    rel="noreferrer"
+    target="_blank"
+  >
+    Music by Jenico
+  </a>
+  <a
+    className="attribution right pause"
+    href="https://www.artstation.com/tommartyn"
+    rel="noreferrer"
+    target="_blank"
+  >
+    Art by Tom Martyn
+  </a>
+</footer>
+`;
+
+exports[`matches snapshot while playing 1`] = `
+<footer>
+  <a
+    className="attribution left "
+    href="https://distrokid.com/hyperfollow/jenico/dreaming-of-detuned-love"
+    rel="noreferrer"
+    target="_blank"
+  >
+    Music by Jenico
+  </a>
+  <a
+    className="attribution right "
+    href="https://www.artstation.com/tommartyn"
+    rel="noreferrer"
+    target="_blank"
+  >
+    Art by Tom Martyn
+  </a>
+</footer>
+`;

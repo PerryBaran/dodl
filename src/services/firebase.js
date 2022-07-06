@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCii4o2e6WknaKrmWq1Q27HcB6NTV_dTD8",
@@ -13,5 +13,10 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const storage = getStorage();
 
-export { storage }
+const getURL = async (path) => {
+  const fileRef = ref(storage, path);
+  const url = await getDownloadURL(fileRef);
+  return url
+};
 
+export { getURL }

@@ -3,16 +3,20 @@ import Background from './background/Background';
 import Player from './main/Player';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import AppContext from '../utils/context/AppContext';
+import AppContext from './AppContext';
 
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  
+  const hideWhilePlaying = (input) => {
+    return isPlaying? '' : input
+  }
 
   return (
-    <AppContext.Provider value={{isPlaying, setIsPlaying}}>
-      <Header text={'Dreaming of Detuned Love'}/>
-      <Background/>
-      <Player/>
+    <AppContext.Provider value={{hideWhilePlaying}}>
+      <Header/>
+      <Background isPlaying={isPlaying}/>
+      <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
       <Footer/>
     </AppContext.Provider>
   );

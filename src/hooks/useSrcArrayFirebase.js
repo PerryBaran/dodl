@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
-import { storage } from '../../services/firebase';
-import { ref, getDownloadURL  } from "firebase/storage";
+import { getURL } from '../services/firebase';
 
 export default function useSrcArrayFirebase(inputArray){
     const [array, setArray] = useState(inputArray);
@@ -11,16 +10,15 @@ export default function useSrcArrayFirebase(inputArray){
       for (let i = 0; i < length; i++) {
         const object = arrayCopy[i]
         if (object.ref) {
-          const fileRef = ref(storage, object.ref);
-          getDownloadURL(fileRef)
+          getURL(object.ref)
           .then((url) => {
             object.src = url
           })
           }
         }
-      setArray(arrayCopy)
+      setArray(arrayCopy);
       //eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return [array]
-}
+};

@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
-import useSrcArrayFirebase from '../../utils/hooks/useSrcArrayFirebase';
-import songInfo from '../../utils/constants/songInfo'
+import React, { useState, useRef, useEffect } from 'react';
+import useSrcArrayFirebase from '../../hooks/useSrcArrayFirebase';
+import songInfo from '../songInfo'
 import { getLocalVolume } from '../../services/localStorage';
 import Tracklist from './tracklist/Tracklist';
 import VolumeControls from './volume-controls/VolumeControls';
@@ -8,10 +8,9 @@ import MediaControls from './media-controls/MediaControls';
 import Progressbar from './progress-bar/ProgressBar';
 import KeyboardListener from './keyboard-listeners/KeyboardListener';
 import SongName from './song-name/SongName';
-import AppContext from '../../utils/context/AppContext';
 
 const Player = (props) => {
-    const { isPlaying } = useContext(AppContext);
+    const { isPlaying, setIsPlaying } = props;
     
     const [songs] = useSrcArrayFirebase(songInfo);
     const [songIndex, setSongIndex] = useState(0);
@@ -63,7 +62,7 @@ const Player = (props) => {
             <SongName songs={songs} songIndex={songIndex}/>
             <Tracklist songs={songs} setSongIndex={setSongIndex}/>
             <VolumeControls volume={volume} setVolume={setVolume} />
-            <MediaControls skipSong={skipSong}/>
+            <MediaControls skipSong={skipSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
             <Progressbar ref={progressRef} audioRef={audioRef}/>
             <KeyboardListener skipSong={skipSong} volume={volume} setVolume={setVolume}/>
         </main>
