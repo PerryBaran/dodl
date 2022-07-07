@@ -3,20 +3,13 @@
 exports[`matches snapshot while paused 1`] = `
 <div
   className="volume"
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  style={
-    Object {
-      "height": "auto",
-    }
-  }
 >
   <div
     className="centerFlex volumeIconContainer"
   >
-    <i
+    <button
       className="volumeIcon pause"
-      data-testid="icon"
+      onClick={[Function]}
     >
       <svg
         aria-hidden="true"
@@ -35,7 +28,7 @@ exports[`matches snapshot while paused 1`] = `
           style={Object {}}
         />
       </svg>
-    </i>
+    </button>
   </div>
   <input
     className="volumeSlider"
@@ -45,11 +38,6 @@ exports[`matches snapshot while paused 1`] = `
     min={0}
     name="volume"
     onChange={[Function]}
-    style={
-      Object {
-        "display": "none",
-      }
-    }
     type="range"
   />
 </div>

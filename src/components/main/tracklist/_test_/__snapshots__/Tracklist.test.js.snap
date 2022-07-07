@@ -3,8 +3,6 @@
 exports[`matches snapshot while paused 1`] = `
 <div
   className="tracklistContainer"
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
 >
   <i
     className="tracklistButton pause"
@@ -28,13 +26,7 @@ exports[`matches snapshot while paused 1`] = `
       />
     </svg>
   </i>
-  <ul
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-  >
+  <ul>
     <li>
       <button
         onClick={[Function]}
@@ -56,8 +48,6 @@ exports[`matches snapshot while paused 1`] = `
 exports[`matches snapshot while playing 1`] = `
 <div
   className="tracklistContainer"
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
 >
   <i
     className="tracklistButton "
@@ -81,13 +71,7 @@ exports[`matches snapshot while playing 1`] = `
       />
     </svg>
   </i>
-  <ul
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-  >
+  <ul>
     <li>
       <button
         onClick={[Function]}

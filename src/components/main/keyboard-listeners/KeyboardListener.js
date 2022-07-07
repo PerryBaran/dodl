@@ -1,9 +1,7 @@
-import { useEffect, useContext } from 'react';
-import AppContext from '../../AppContext';
+import { useEffect } from 'react';
 
 const KeyboardListener = (props) => {
-    const { skipSong, volume, setVolume} = props
-    const { isPlaying, setIsPlaying } = useContext(AppContext);
+    const { skipSong, volume, setVolume, isPlaying, setIsPlaying} = props
 
     useEffect(() => {
         window.addEventListener('keydown', keyDownHandler)

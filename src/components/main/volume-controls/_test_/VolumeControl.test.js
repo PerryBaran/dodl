@@ -27,13 +27,13 @@ it("renders without crashing", () => {
 
 it("shows className while paused", () => {
     render(RenderWithContext());
-    const icon = screen.getByTestId('icon')
+    const icon = screen.getByRole('button')
     expect(icon).toHaveClass('pause');
 });
 
 it("hides className while playing", () => {
     render(RenderWithContext(0.5, true));
-    const icon = screen.getByTestId('icon')
+    const icon = screen.getByRole('button')
     expect(icon).not.toHaveClass('pause');
 });
 
@@ -47,14 +47,3 @@ it("matches snapshot while paused", () => {
     const tree = renderer.create(RenderWithContext()).toJSON();
     expect(tree).toMatchSnapshot();
 });
-
-//not creating snapshot due to useRef()
-// it("matches snapshot while playing", () => {
-//     const tree = renderer.create(RenderWithContext(0.5, true)).toJSON();
-//     expect(tree).toMatchSnapshot();
-// });
-
-// it("matches snapshot with different value for volume", () => {
-//     const tree = renderer.create(RenderWithContext(0.9)).toJSON();
-//     expect(tree).toMatchSnapshot();
-// });

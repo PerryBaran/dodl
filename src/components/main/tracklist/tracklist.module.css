@@ -29,6 +29,7 @@
 
 .tracklistContainer > ul {
     all: unset;
+    display: none;
 
     position: relative;
     right: 2px;
@@ -36,17 +37,21 @@
     color: white;
 }
 
-.tracklistContainer > ul > li {
+.tracklistContainer:hover > ul {
+    display: block;
+}
+
+.tracklistContainer li {
     font-size: 1.5rem;
     cursor: pointer;
     margin-top: 4px;
 }
 
-.tracklistContainer > ul > li > button {
+.tracklistContainer button {
     all: unset
 }
 
-.tracklistContainer > ul > li:hover {
+.tracklistContainer li:hover {
     text-shadow: 0 0 5px var(--darkPink), 0 0 2px var(--lightPink);
 }
 
@@ -55,7 +60,7 @@
 }
 
 @media screen and (max-width: 1262px) {
-    .tracklistContainer > ul > li {
+    .tracklistContainer li {
         font-size: 1rem;
     }
 

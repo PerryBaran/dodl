@@ -67,7 +67,7 @@ const Player = (props) => {
             <VolumeControls volume={volume} setVolume={setVolume} />
             <MediaControls skipSong={skipSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
             <Progressbar ref={progressRef} audioRef={audioRef}/>
-            <KeyboardListener skipSong={skipSong} volume={volume} setVolume={setVolume}/>
+            <KeyboardListener skipSong={skipSong} volume={volume} setVolume={setVolume} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
         </main>
     );
 };
