@@ -7,7 +7,7 @@ import renderer from "react-test-renderer";
 
 afterEach(cleanup);
 
-const songs = [{title: 'dummy'}, {title: 'text'}]
+const songs = [{title: 'dummy', src: true}, {title: 'text', src: true}]
 
 const RenderWithContext = (index = 0, isPlaying = false) => {
     const hideWhilePlaying = (input) => {

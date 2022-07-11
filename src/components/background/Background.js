@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import style from './background.module.css';
 import useSrcFirebase from '../../hooks/useSrcFirebase';
+import CircleLoader from "react-spinners/PuffLoader";
 
 
 const Background = (props) => {
@@ -20,14 +21,25 @@ const Background = (props) => {
 
     return (
         <div className={style.container}>
-            <video 
-                className={style.background} 
-                autoPlay 
-                loop 
-                muted 
-                ref={videoRef} 
-                src={src}
-            />
+            {
+                src ? 
+                <video 
+                    className={style.background} 
+                    autoPlay 
+                    loop 
+                    muted 
+                    ref={videoRef} 
+                    src={src}
+                />
+                :
+                <div>
+                    <CircleLoader
+                    color={"#df88cb"} 
+                    loading={!src}
+                    size={400} />
+                </div>  
+            }
+            
       </div>
     );
 };

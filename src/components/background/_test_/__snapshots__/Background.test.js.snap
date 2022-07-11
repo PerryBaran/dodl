@@ -4,11 +4,58 @@ exports[`matches snapshot 1`] = `
 <div
   className="container"
 >
-  <video
-    autoPlay={true}
-    className="background"
-    loop={true}
-    muted={true}
-  />
+  <div>
+    <span
+      style={
+        Object {
+          "display": "inherit",
+          "height": "400px",
+          "position": "relative",
+          "width": "400px",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "animation": "react-spinners-PuffLoader-puff-1, react-spinners-PuffLoader-puff-2",
+            "animationDelay": "-1s",
+            "animationDuration": "2s",
+            "animationFillMode": "both",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "cubic-bezier(0.165, 0.84, 0.44, 1), cubic-bezier(0.3, 0.61, 0.355, 1)",
+            "border": "thick solid #df88cb",
+            "borderRadius": "50%",
+            "height": "400px",
+            "left": "0",
+            "opacity": "1",
+            "position": "absolute",
+            "top": "0",
+            "width": "400px",
+          }
+        }
+      />
+      <span
+        style={
+          Object {
+            "animation": "react-spinners-PuffLoader-puff-1, react-spinners-PuffLoader-puff-2",
+            "animationDelay": "0s",
+            "animationDuration": "2s",
+            "animationFillMode": "both",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "cubic-bezier(0.165, 0.84, 0.44, 1), cubic-bezier(0.3, 0.61, 0.355, 1)",
+            "border": "thick solid #df88cb",
+            "borderRadius": "50%",
+            "height": "400px",
+            "left": "0",
+            "opacity": "1",
+            "position": "absolute",
+            "top": "0",
+            "width": "400px",
+          }
+        }
+      />
+    </span>
+  </div>
 </div>
 `;

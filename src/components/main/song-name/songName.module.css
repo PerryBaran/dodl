@@ -31,6 +31,10 @@
     transition-duration: 4s;
 }
 
+.loader {
+    margin-bottom: 50px;
+}
+
 @media screen and (max-width: 1262px), screen and (max-height: 550px) {
     .name {
         font-size: 2rem;

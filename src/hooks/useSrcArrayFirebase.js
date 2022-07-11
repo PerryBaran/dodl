@@ -13,20 +13,7 @@ export default function useSrcArrayFirebase(inputArray, index){
           object.src = url;
           setArray(arrayCopy);
         })
-      }
-
-      // const length = arrayCopy.length;
-      // for (let i = 0; i < length; i++) {
-      //   const object = arrayCopy[i]
-      //   if (object.ref) {
-      //     getURL(object.ref)
-      //     .then((url) => {
-      //       object.src = url
-      //     })
-      //     }
-      //   }
-      //  setArray(arrayCopy);
-      
+      }  
     }, [array, index]);
 
     return [array]

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import style from './songName.module.css';
 import AppContext from '../../AppContext';
+import BeatLoader from "react-spinners/BeatLoader";
 
 const SongName = (props) => {
     const { songs, songIndex } = props
@@ -22,7 +23,16 @@ const SongName = (props) => {
 
     return (
         <div className={`centerFlex positionBottom`}>
-            <h2 className={`${style.name} ${hideWhilePlaying(style.pause)} ${addClassOnSongChange()}`}>{songs[songIndex].title}</h2>
+            {   
+                songs[songIndex].src?
+                    <h2 className={`${style.name} ${hideWhilePlaying(style.pause)} ${addClassOnSongChange()}`}>{songs[songIndex].title}</h2>
+                :
+                    <div className={style.loader}>
+                        <BeatLoader color={"white"} loading={!songs[songIndex].src} size={25} />
+                    </div>
+                    
+            }
+            
         </div>
     );
 }
