@@ -23,14 +23,12 @@ const SongName = (props) => {
 
     return (
         <div className={`centerFlex positionBottom`}>
-            {   
-                songs[songIndex].src?
-                    <h2 className={`${style.name} ${hideWhilePlaying(style.pause)} ${addClassOnSongChange()}`}>{songs[songIndex].title}</h2>
-                :
-                    <div className={style.loader}>
-                        <BeatLoader color={"white"} loading={!songs[songIndex].src} size={25} />
-                    </div>
-                    
+            {songs[songIndex].src?
+                <h2 className={`${style.name} ${hideWhilePlaying(style.pause)} ${addClassOnSongChange()}`}>{songs[songIndex].title}</h2>
+            :
+                <div className={style.loader}>
+                    <BeatLoader color={"white"} loading={!songs[songIndex].src} size={25} />
+                </div>
             }
             
         </div>

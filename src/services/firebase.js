@@ -14,9 +14,13 @@ initializeApp(firebaseConfig);
 const storage = getStorage();
 
 const getURL = async (path) => {
-  const fileRef = ref(storage, path);
-  const url = await getDownloadURL(fileRef);
-  return url
+  try {
+    const fileRef = ref(storage, path);
+    const url = await getDownloadURL(fileRef);
+    return url
+  } catch(err) {
+    alert(err)
+  }
 };
 
 export { getURL }

@@ -21,25 +21,21 @@ const Background = (props) => {
 
     return (
         <div className={style.container}>
-            {
-                src ? 
-                <video 
-                    className={style.background} 
-                    autoPlay 
-                    loop 
-                    muted 
-                    ref={videoRef} 
-                    src={src}
-                />
-                :
-                <div>
-                    <CircleLoader
+            <video 
+                className={style.background} 
+                autoPlay 
+                loop 
+                muted 
+                ref={videoRef} 
+                src={src}
+            />
+            <div className='centerFlex positionTop'>
+                <CircleLoader
                     color={"#df88cb"} 
                     loading={!src}
-                    size={400} />
-                </div>  
-            }
-            
+                    size={400}
+                />
+            </div>  
       </div>
     );
 };
